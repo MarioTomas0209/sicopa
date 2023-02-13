@@ -1,15 +1,20 @@
 <?php include('../templates/header.php'); ?>
 
-    <div class="mt-3">
+<div class="mt-3 buscador">
         <h2>Citas</h2>
+
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="mt-3 mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="mt-5 mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Agregar
     </button>
 
-    <div class="card">
+    <div class="mt-3 card">
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">

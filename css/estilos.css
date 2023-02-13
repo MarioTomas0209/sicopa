@@ -5,7 +5,13 @@
     font-size: 2rem;
     font-weight: bold;
 }
-
+/* Buscador */
+@media (min-width: 768px) {
+    .buscador{
+        display: flex;
+        justify-content: space-between;
+    }
+}
 
 .icono{
     font-size: 5rem;
