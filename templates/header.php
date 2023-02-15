@@ -45,19 +45,19 @@ $url_base = 'http://localhost/consultorio/';
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $url_base; ?>secciones/pacientes.php">Pacientes</a>
+                            <a class="nav-link" href="<?php echo $url_base; ?>modules/pacientes.php">Pacientes</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $url_base; ?>secciones/citas.php">Citas</a>
+                            <a class="nav-link" href="<?php echo $url_base; ?>modules/citas.php">Citas</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $url_base; ?>secciones/usuarios.php">Usuarios</a>
+                            <a class="nav-link" href="<?php echo $url_base; ?>modules/usuarios.php">Usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $url_base; ?>secciones/usuarios.php">Cerrar sesión</a>
+                            <a class="nav-link" href="<?php echo $url_base; ?>modules/usuarios.php">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>

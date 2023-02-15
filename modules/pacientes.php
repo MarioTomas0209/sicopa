@@ -7,12 +7,7 @@
             <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
-    </div>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="mt-5 mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Agregar
-    </button>
+    </div>    
 
     <div class="mt-3 card">
         <!-- Modal -->
@@ -34,7 +29,13 @@
         </div>
     </div>
 
+
     <div class="card">
+        <div class="card-header">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Agregar
+            </button>
+        </div>
         <div class="card-body">
 
             <div class="table-responsive">
