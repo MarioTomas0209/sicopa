@@ -1,5 +1,3 @@
-<?php $url_base = 'http://localhost/sicopa/'; ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="../css/estilos.css">
 
 </head>
 
@@ -26,7 +23,7 @@
 
     if (isset($_GET["ruta"])) {
 
-        if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios") {
+        if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios" || $_GET["ruta"] == "site") {
             include "modules/" . $_GET["ruta"] . ".php";
         }
         

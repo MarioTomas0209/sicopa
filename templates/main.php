@@ -1,9 +1,44 @@
 <main class="container">
-    <div class="p-5 mb-4 bg-light rounded-3 mt-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Sistema de control de pacientes</h1>
-            <p class="col-md-8 fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus labore possimus a quis veritatis praesentium illo delectus quisquam. Fugiat beatae fugit nemo ipsa, nostrum assumenda tempore sequi animi! Error, eligendi!</p>
-            <i class="bi bi-ui-checks icono"></i>
+    <div class="row align-items-md-stretch mt-5">
+        <div class="col-md-6">
+            <div
+                class="h-100 p-5 text-black bg-light border rounded-3">
+                <h2>SISTEMA DE CONTROL DE PACIENTES</h2>
+                <p class="fs-4" >Bienvenid@ <span class="fw-bold">Tomas</span></p>
+                <button class="btn btn-primary" type="button">Agregar Cita</button>
+                
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div
+                class="h-100 text-black p-5 bg-light border rounded-3">
+                <h2>Citas próximos</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-primary">
+                        <thead>
+                            <tr>
+                                <th scope="col">Column 1</th>
+                                <th scope="col">Column 2</th>
+                                <th scope="col">Column 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td scope="row">R1C1</td>
+                                <td>R1C2</td>
+                                <td>R1C3</td>
+                            </tr>
+                            <tr class="">
+                                <td scope="row">Item</td>
+                                <td>Item</td>
+                                <td>Item</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
         </div>
     </div>
 </main>
