@@ -19,22 +19,32 @@
 <body>
     <?php
 
-    include 'header.php';
+    
 
     if (isset($_GET["ruta"])) {
 
-        if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios" || $_GET["ruta"] == "site") {
+        if($_GET["ruta"] == "login" || $_GET["ruta"] == "registro" || $_GET["ruta"] == "loginDoctor"){
+            include "modules/" . $_GET["ruta"] . ".php";
+        }
+
+        if( $_GET["ruta"] == "site"){
+            include "modules/" . $_GET["ruta"] . ".php";
+        }
+
+        if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios") {
+            include 'header.php';
             include "modules/" . $_GET["ruta"] . ".php";
         }
         
         if ($_GET["ruta"] == "main" || $_GET["ruta"] == "inicio") {
+            include 'header.php';
             include "templates/" . $_GET["ruta"] . ".php";
         }
     } else {
         include "templates/main.php";
     }
 
-    include 'footer.php'
+    include 'footer.php';
 
     ?>
 </body>

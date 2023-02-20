@@ -13,20 +13,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="sesion">
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Servicios
-                            </a>
-                            <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" href="#">ESTÉTICA DENTAL</a></li>
-                                <li><a class="dropdown-item" href="#">IMPLANTES</a></li>
-                                <li><a class="dropdown-item" href="#">ORTODONCIA</a></li>
-                                <li><a class="dropdown-item" href="#">BLANQUEAMIENTO</a></li>
-                                <li><a class="dropdown-item" href="#">ODONTOPEDIATRÍA</a></li>
-                                <li><a class="dropdown-item" href="#">ENDODONCÍA</a></li>
-                                <li><a class="dropdown-item" href="#">CIRUGÍA ORAL</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pacientes">Pacientes</a>
                         </li>
@@ -35,6 +21,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="usuarios">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="usuarios">Catálogos</a>
                         </li>
                     </ul>
                     

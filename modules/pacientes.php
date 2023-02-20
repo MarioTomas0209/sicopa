@@ -39,7 +39,7 @@
     
                 <div class="table-responsive">
     
-                    <table class="table table-primary">
+                    <table class="table table-striped table-primary">
                         <thead>
                             <tr>
                                 <th scope="col">Número de paciente</th>
