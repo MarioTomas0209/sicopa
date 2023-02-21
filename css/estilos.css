@@ -18,9 +18,13 @@
     color: #007bff;
 }
 
+.box-team {
+    display: flex;
+}
+
 /* footer */
 footer{
-    min-height: 30rem;
+    /* min-height: 30rem; */
     color: white;
     background-color: #03001C
 }
