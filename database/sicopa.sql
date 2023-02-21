@@ -4,7 +4,7 @@ USE sicopa;
 
 /** Catalogos a considerar [] */
 CREATE TABLE prefijo (id_prefijo INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_prefijo VARCHAR(10) NOT NULL); # Ing, Lic, Sr, Sra, Srta, etc.
-CREATE TABLE tipo_consulta (id_tipo INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_tipo VARCHAR(30) NOT NULL);
+CREATE TABLE servicios (id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_servicio VARCHAR(30) NOT NULL);
 CREATE TABLE especialidad (id_especialidad INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_especialidad VARCHAR(30) NOT NULL);
 CREATE TABLE alergias (id_alergia INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_alergia VARCHAR(30) NOT NULL);
 CREATE TABLE detalles_alergias (id_alergia INT NOT NULL, detalles_alergia TEXT NOT NULL, FOREIGN KEY(id_alergia) REFERENCES alergias(id_alergia));
@@ -26,8 +26,6 @@ CREATE TABLE paciente (
     fec_nac DATE NOT NULL,
     email VARCHAR(50), 
     sexo VARCHAR(30) NOT NULL,
-    escolaridad VARCHAR(30),
-    ocupacion VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
         
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -1,5 +1,3 @@
-<?php $url_base = 'http://localhost/sicopa/'; ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -14,30 +12,42 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="views/css/estilos.css">
 
 </head>
 
 <body>
     <?php
 
-    include 'header.php';
+
 
     if (isset($_GET["ruta"])) {
 
+        if ($_GET["ruta"] == "login" || $_GET["ruta"] == "registro" || $_GET["ruta"] == "loginDoctor") {
+            include "views/modules/" . $_GET["ruta"] . ".php";
+        }
+
+        if ($_GET["ruta"] == "site") {
+            include "views/modules/" . $_GET["ruta"] . ".php";
+        }
+
         if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios") {
-            include "modules/" . $_GET["ruta"] . ".php";
+            include 'header.php';
+            include "views/modules/" . $_GET["ruta"] . ".php";
+        }
+
+        if ($_GET["ruta"] == "main" || $_GET["ruta"] == "inicio") {
+            include 'header.php';
+            include "views/templates/" . $_GET["ruta"] . ".php";
         }
         
-        if ($_GET["ruta"] == "main" || $_GET["ruta"] == "inicio") {
-            include "templates/" . $_GET["ruta"] . ".php";
-        }
+        
     } else {
-        include "templates/main.php";
+        include 'header.php';
+        include "views/templates/site.php";
     }
 
-    include 'footer.php'
+    include 'footer.php';
 
     ?>
 </body>
