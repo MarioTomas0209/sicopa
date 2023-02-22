@@ -44,7 +44,7 @@
         
     } else {
         include 'header.php';
-        include "views/templates/site.php";
+        include "views/modules/site.php";
     }
 
     include 'footer.php';

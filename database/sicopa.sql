@@ -34,12 +34,15 @@ CREATE TABLE paciente (
 CREATE TABLE doctor (
 	id_doctor INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_especialidad INT NOT NULL,
+    cedula VARCHAR(50) NOT NULL,
     nombre VARCHAR(30) NOT NULL,
     ape_pat VARCHAR(30) NOT NULL,
     ape_mat VARCHAR(30) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
     email VARCHAR(50),
+    contraseña VARCHAR(100),
+    perfil VARCHAR(20),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
     FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad)

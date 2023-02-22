@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="signin">
-                        <span>ya tienes una cuenta? <a href="registro">Registrate aqui</a> </span>
+                        <span>¿No tienes una cuenta? <a href="registro">Registrate aqui</a> </span>
                     </div>
                 </div>
 
