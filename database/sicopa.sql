@@ -27,6 +27,8 @@ CREATE TABLE paciente (
     email VARCHAR(50), 
     sexo VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
+    correo VARCHAR(50),
+    password VARCHAR(50),
         
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -41,7 +43,7 @@ CREATE TABLE doctor (
     direccion VARCHAR(50) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
     email VARCHAR(50),
-    contraseña VARCHAR(100),
+    password VARCHAR(100),
     perfil VARCHAR(20),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
@@ -69,7 +71,10 @@ CREATE TABLE citas (
     fin_atencion DATETIME NOT NULL,
     motivo VARCHAR (50) NOT NULL,
     observaciones TEXT NOT NULL,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
+    FOREIGN KEY (id_doctor) REFERENCES doctor(id_doctor)
 );
 
 
