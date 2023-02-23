@@ -1,4 +1,3 @@
-
 <div class="wrapper">
     <div class="container main">
         <div class="row card-login">
@@ -29,6 +28,7 @@
                     <div class="input-field">
                        <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
+                    
 
                     <div class="signin">
                         <span>ya tienes una cuenta? <a href="registro">Registrate aqui</a> </span>
