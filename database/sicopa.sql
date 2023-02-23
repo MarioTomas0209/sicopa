@@ -76,8 +76,3 @@ CREATE TABLE citas (
     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
     FOREIGN KEY (id_doctor) REFERENCES doctor(id_doctor)
 );
-
-
-
-
-

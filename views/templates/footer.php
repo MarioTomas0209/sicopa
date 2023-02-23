@@ -1,6 +1,6 @@
 <footer class="mt-5 text-center text-lg-start">
   <div class="text-center p-3">
-    <a class="logo navbar-brand" href="<?php echo $url_base; ?>index.php">SICOPA</a>
+    <a class="logo navbar-brand" href="main">SICOPA</a>
     <p class="mt-5">© 2023 Copyright: Todos los derechos reservados</p>
   </div>
 </footer>

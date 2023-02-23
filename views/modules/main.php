@@ -18,14 +18,13 @@
 
                         <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
 
-                        <?php
+                            <?php
                             $services = ControllerServices::getServices();
-                        
+
                             foreach ($services as $key => $value) {
                                 echo '<li><a class="dropdown-item text-uppercase" href="#">' . $value['ds_servicio'] . '</a></li>';
-                                
                             }
-                        ?>
+                            ?>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -40,8 +39,8 @@
                         Inciar sesion
                     </a>
                     <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="login">Paciente</a></li>
-                        <li><a class="dropdown-item" href="loginDoctor">Doctor</a></li>
+                        <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
+                        <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
                     </ul>
                 </div>
             </div>

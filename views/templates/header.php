@@ -26,16 +26,16 @@
                             <a class="nav-link" href="usuarios">Catálogos</a>
                         </li>
                     </ul>
-                    
+
                     <!-- <a class="nav-link" href="usuarios">Iniciar sesión</a> -->
                     <div class="dropdown">
                         <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Inciar sesion
-                            </a>
-                            <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" href="#">Paciente</a></li>
-                                <li><a class="dropdown-item" href="#">Doctor</a></li>
-                            </ul>
+                            Inciar sesion
+                        </a>
+                        <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Paciente</a></li>
+                            <li><a class="dropdown-item" href="#">Doctor</a></li>
+                        </ul>
                     </div>
                 </div>
 

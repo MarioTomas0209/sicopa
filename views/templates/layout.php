@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="views/css/estilos.css">
+    <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/estilos.css">
 
 </head>
 
@@ -20,31 +20,34 @@
     <?php
 
 
-
     if (isset($_GET["ruta"])) {
 
-        if ($_GET["ruta"] == "login" || $_GET["ruta"] == "registro" || $_GET["ruta"] == "loginDoctor") {
-            include "views/modules/" . $_GET["ruta"] . ".php";
-        }
-
-        if ($_GET["ruta"] == "site") {
-            include "views/modules/" . $_GET["ruta"] . ".php";
-        }
-
-        if ($_GET["ruta"] == "citas" || $_GET["ruta"] == "pacientes" || $_GET["ruta"] == "usuarios") {
-            include 'header.php';
-            include "views/modules/" . $_GET["ruta"] . ".php";
-        }
-
-        if ($_GET["ruta"] == "main" || $_GET["ruta"] == "inicio") {
-            include 'header.php';
-            include "views/templates/" . $_GET["ruta"] . ".php";
-        }
+        $ruta = $_GET['ruta'];
         
+        if (
+            $ruta == "citas" ||
+            $ruta == "pacientes" ||
+            $ruta == "usuarios" ||
+            $ruta == "main" ||
+            $ruta == "inicio"
+        ) {
+            include 'header.php';
+            include "views/modules/{$ruta}.php";
+        }
+
+        
+        $ruta = explode('/', $ruta);
+
+        if ($ruta[0] == 'login' || $ruta[0] == 'registro') {
+            include "views/modules/{$ruta[0]}.php";
+        } else {
+            // in case of not finding any route, show the error 404
+            include "views/modules/main.php";    
+        }
         
     } else {
         include 'header.php';
-        include "views/modules/site.php";
+        include "views/modules/main.php";
     }
 
     include 'footer.php';
