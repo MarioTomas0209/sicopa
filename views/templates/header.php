@@ -1,5 +1,5 @@
 <header>
-    <!-- place navbar here -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="container-fluid">
@@ -13,6 +13,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="sesion">
                     <ul class="navbar-nav">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Servicios
+                            </a>
+
+                            <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
+
+                                <?php
+                                $services = ControllerServices::getServices();
+
+                                foreach ($services as $key => $value) {
+                                    echo '<li><a class="dropdown-item text-uppercase" href="#">' . $value['ds_servicio'] . '</a></li>';
+                                }
+                                ?>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Citas</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="pacientes">Pacientes</a>
                         </li>
@@ -27,16 +48,15 @@
                         </li>
                     </ul>
 
-                    <!-- <a class="nav-link" href="usuarios">Iniciar sesión</a> -->
                     <div class="dropdown">
-                        <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Inciar sesion
-                        </a>
-                        <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Paciente</a></li>
-                            <li><a class="dropdown-item" href="#">Doctor</a></li>
-                        </ul>
-                    </div>
+                    <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Inciar sesion
+                    </a>
+                    <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
+                        <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
+                    </ul>
+                </div>
                 </div>
 
             </div>

@@ -70,6 +70,40 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <tr class="">
+                                <td scope="row">1</td>
+                                <td>Mario Adolfo</td>
+                                <td>Tomas Roblero</td>
+                                <td>El arenal</td>
+                                <td>1234566</td>
+                                <td>Si</td>
+                                <td>Ortodoncia</td>
+                                <td>Los dientes bien chuecos</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-warning">Editar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="">
+                                <td scope="row">1</td>
+                                <td>Mario Adolfo</td>
+                                <td>Tomas Roblero</td>
+                                <td>El arenal</td>
+                                <td>1234566</td>
+                                <td>Si</td>
+                                <td>Ortodoncia</td>
+                                <td>Los dientes bien chuecos</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-warning">Editar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </td>
+                            </tr>
     
                         </tbody>
                     </table>

@@ -40,9 +40,6 @@
 
         if ($ruta[0] == 'login' || $ruta[0] == 'registro') {
             include "views/modules/{$ruta[0]}.php";
-        } else {
-            // in case of not finding any route, show the error 404
-            include "views/modules/main.php";    
         }
         
     } else {
