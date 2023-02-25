@@ -10,7 +10,7 @@
                 echo '<script>window.location = "' . SERVER_URL . '"</script>';
             }
             ?>
-            <img src="views/img/login.svg" class="img-fluid img-login rounded-top" alt="">
+            <img src="<?php echo SERVER_URL ?>views/img/login.svg" class="img-fluid img-login rounded-top" alt="">
             <div class="text">
                 <a class="logo navbar-brand" href="site">SICOPA</a>
             </div>
@@ -21,7 +21,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Correo</label>
-                    <input type="text" class="form-control" name="" id="correo" aria-describedby="helpId" placeholder="">
+                    <input type="text" class="form-control" name="" id="email" aria-describedby="helpId" placeholder="">
                 </div>
                 
                 <div class="mb-3">

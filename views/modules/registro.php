@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="input-field">
-                        <a name="" id="registrarse" class="btn btn-primary" href="login" role="button">Registrate</a>
+                        <a name="" id="registrarse" class="btn btn-primary" href="registro" role="button">Registrate</a>
                     </div>
 
                 </div>

@@ -1,10 +1,10 @@
 // Variables declaration
-const correo = document.querySelector('#correo');
+const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-const login = document.querySelector('#login');
+const submit = document.querySelector('#login');
 // End of variables declaration
 
-login.addEventListener('click', login);
+submit.addEventListener('click', login);
 
 
 function login(e) {
