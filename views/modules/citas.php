@@ -61,7 +61,12 @@
                                 <td>12/02/2023</td>
                                 <td>13:30</td>
                                 <td>En tratamiento</td>
-                                <td>Editar | Eliminar</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-warning">Editar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </td>
                             </tr>
     
                         </tbody>

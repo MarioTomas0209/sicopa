@@ -63,7 +63,12 @@
                                 <td>Si</td>
                                 <td>Ortodoncia</td>
                                 <td>Los dientes bien chuecos</td>
-                                <td>Editar | Eliminar</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-warning">Editar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </td>
                             </tr>
     
                         </tbody>

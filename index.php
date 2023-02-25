@@ -1,7 +1,9 @@
 <?php
 
-require_once 'controller/services.controller.php';
-require_once 'model/services.model.php';
+require_once 'php/config.php';
+
+require_once 'controllers/services.controller.php';
+require_once 'models/services.model.php';
 
 
 include 'views/templates/layout.php'; 
