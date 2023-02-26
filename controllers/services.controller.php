@@ -1,6 +1,6 @@
 <?php 
 
-class ControllerServices {
+class ServicesController {
     public static function getServices() {
         return Services::getServices();
     }

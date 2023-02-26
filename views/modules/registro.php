@@ -4,7 +4,7 @@
             <div class="col-md-6 side-image">
                 <img src="views/img/login.svg" class="img-fluid img-login rounded-top" alt="">
                 <div class="text">
-                    <a class="logo navbar-brand" href="site">SICOPA</a>
+                    <a class="logo navbar-brand" href="main">SICOPA</a>
                 </div>
             </div>
             <div class="col-md-6 right">

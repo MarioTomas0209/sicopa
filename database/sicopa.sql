@@ -24,11 +24,10 @@ CREATE TABLE paciente (
     ape_pat VARCHAR(30) NOT NULL,
     ape_mat VARCHAR(30) NOT NULL,
     fec_nac DATE NOT NULL,
-    email VARCHAR(50), 
     sexo VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
-    correo VARCHAR(50),
-    password VARCHAR(50),
+    email VARCHAR(50), 
+    password VARCHAR(120),
         
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -43,7 +42,7 @@ CREATE TABLE doctor (
     direccion VARCHAR(50) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
     email VARCHAR(50),
-    password VARCHAR(100),
+    password VARCHAR(120),
     perfil VARCHAR(20),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     

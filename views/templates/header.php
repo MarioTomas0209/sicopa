@@ -22,7 +22,7 @@
                             <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
 
                                 <?php
-                                $services = ControllerServices::getServices();
+                                $services = ServicesController::getServices();
 
                                 foreach ($services as $key => $value) {
                                     echo '<li><a class="dropdown-item text-uppercase" href="#">' . $value['ds_servicio'] . '</a></li>';
@@ -49,14 +49,30 @@
                     </ul>
 
                     <div class="dropdown">
-                    <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Inciar sesion
-                    </a>
-                    <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
-                        <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
-                    </ul>
-                </div>
+                        <?php
+                        if (isset($_SESSION['usuario'])) {
+                            echo '
+                                <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    '.$_SESSION["nombre"].' '.$_SESSION["ape_pat"].'
+                                </a>
+                                <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="salir">Salir</a></li>
+                                </ul>
+                            
+                            ';
+                        } else {
+                            echo '
+                                <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Inciar sesion
+                                </a>
+                                <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
+                                    <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
+                                </ul>
+                            ';
+                        }
+                        ?>
+                    </div>
                 </div>
 
             </div>
