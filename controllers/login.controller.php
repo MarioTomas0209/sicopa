@@ -18,8 +18,7 @@ class LoginController {
             $_SESSION['usuario'] = $table;
             $_SESSION['id_'] = 1;
             $_SESSION['nombre'] = $user['nombre'];
-            $_SESSION['ape_pat'] = $user['ape_pat'];
-            $_SESSION['ape_mat'] = $user['ape_mat'];
+            $_SESSION['apellidos'] = $user['apellidos'];
             $_SESSION['email'] = $user['email'];
         }
         

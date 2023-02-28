@@ -17,6 +17,17 @@ class RegisterController{
             $password = $_POST['password'];
 
             RegisterModel::mdlRegistration($nombre, $apellidos, $fec_nac, $email, $sexo, $direccion, $password);
+
+            // session_start();
+            $_SESSION[['paciente']] = 'paciente';
+            $_SESSION[['id']] = 1;
+            $_SESSION[['nombre']] = 'nombre';
+            $_SESSION[['apellidos']] = 'apellidos';
+            $_SESSION[['email']] = 'email';
+
+            header('location: main');
+    
+            
         }
 
     }

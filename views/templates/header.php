@@ -53,7 +53,7 @@
                         if (isset($_SESSION['usuario'])) {
                             echo '
                                 <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    '.$_SESSION["nombre"].' '.$_SESSION["ape_pat"].'
+                                    '.$_SESSION["nombre"].' '.$_SESSION["apellidos"].'
                                 </a>
                                 <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
                                     <li><a class="dropdown-item" href="salir">Salir</a></li>
