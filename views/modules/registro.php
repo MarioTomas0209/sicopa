@@ -37,7 +37,7 @@ if( !empty($_POST['nombre']) &&
             <div class="col-md-6 side-image">
                 <img src="views/img/login.svg" class="img-fluid img-login rounded-top" alt="">
                 <div class="text">
-                    <a class="logo navbar-brand" href="site">SICOPA</a>
+                    <a class="logo navbar-brand" href="main">SICOPA</a>
                 </div>
             </div>
             <div class="col-md-6 right">
@@ -80,7 +80,8 @@ if( !empty($_POST['nombre']) &&
                             <input name="" id="registrarse" class="btn btn-primary" type="submit" value="Registrate">
                         </div>
                     </div>
-                </form>
+
+                </div>
 
             </div>
         </div>

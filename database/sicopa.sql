@@ -22,9 +22,12 @@ CREATE TABLE paciente (
     nombre VARCHAR(30) NOT NULL,
     apellidos VARCHAR(50) NOT NULL,
     fec_nac DATE NOT NULL,
-    email VARCHAR(50), 
     sexo VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
+<<<<<<< HEAD
+=======
+    email VARCHAR(50), 
+>>>>>>> 7a810cd04b1e04d0fbdbf60e5edaefa5b6baac9b
     password VARCHAR(120),
         
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP

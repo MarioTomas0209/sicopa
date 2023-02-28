@@ -20,7 +20,8 @@
 
 <body>
     <?php
-
+    
+    session_start();
 
     if (isset($_GET["ruta"])) {
 
@@ -31,7 +32,8 @@
             $ruta == "pacientes" ||
             $ruta == "usuarios" ||
             $ruta == "main" ||
-            $ruta == "inicio"
+            $ruta == "inicio" ||
+            $ruta == "salir"
         ) {
             include 'header.php';
             include "views/modules/{$ruta}.php";
