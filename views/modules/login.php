@@ -39,14 +39,9 @@
 
                     <input type="hidden" name="table" id="table" value="<?php echo $ruta[1] ?>">
 
-                <?php 
-                    if ($ruta[1] == 'paciente') {
-                        echo '
-                            <div class="signin">
-                                <span>¿No tienes una cuenta? <a href="'.SERVER_URL.'registro">Registrate aqui</a> </span>
-                            </div>';
-                    }
-                ?>
+                    <div class="input-field">
+                        <button type="submit" id="login" class="btn btn-primary">Entrar</button>
+                    </div>
 
                     <?php
                         if ($ruta[1] == 'paciente') {
