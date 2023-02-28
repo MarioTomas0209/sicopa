@@ -37,7 +37,7 @@
                     if ($ruta[1] == 'paciente') {
                         echo '
                             <div class="signin">
-                                <span>¿No tienes una cuenta? <a href="registro">Registrate aqui</a> </span>
+                                <span>¿No tienes una cuenta? <a href="'.SERVER_URL.'registro">Registrate aqui</a> </span>
                             </div>';
                     }
                 ?>
