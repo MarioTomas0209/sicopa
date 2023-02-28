@@ -1,34 +1,3 @@
-<?php
-
-require_once 'C:/xampp/htdocs/sicopa/models/connection.php';
-
-$message = '';
-
-if( !empty($_POST['nombre']) &&
- !empty($_POST['apellidos']) && 
- !empty($_POST['fec_nac']) && 
- !empty($_POST['email']) && 
- !empty($_POST['sexo']) && 
- !empty($_POST['direccion']) && 
- !empty($_POST['password']) ) {
-
-    $sql = "INSERT INTO paciente (nombre, apellidos, fec_nac, email, sexo, direccion, password) VALUES (:nombre, :apellidos :fec_nac, :email, :sexo, :direccion, :password)";
-
-    $stmt = Conexion::conectar()-> prepare($sql);
-    $stmt->bindParam( ':nombre', $_POST['nombre'] );
-    $stmt->bindParam( ':apellidos', $_POST['apellidos'] );
-    $stmt->bindParam( ':fec_nac', $_POST['fec_nac'] ); 
-    $stmt->bindParam( ':email', $_POST['email'] );
-    $stmt->bindParam( ':sexo', $_POST['sexo'] );
-    $stmt->bindParam( ':direccion', $_POST['direccion'] );
-    
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $stmt->bindParam(':password', $password);
-
-    $stmt->execute();
-}
-
-?>
 
 
 <div class="wrapper">
@@ -81,7 +50,14 @@ if( !empty($_POST['nombre']) &&
                         </div>
                     </div>
 
-                </div>
+                    <?php
+                    
+                        $login = new RegisterController();
+                        $login-> ctrRegister();
+                    
+                    ?>
+
+                </form>
 
             </div>
         </div>
