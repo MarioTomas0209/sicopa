@@ -6,7 +6,7 @@ class LoginModel {
 
     /** Get all users from table doctors */
     public static function getUsers() {
-        $sql = 'SELECT * FROM doctor';
+        $sql = 'SELECT * FROM doctor WHERE id_doctor NOT IN (1)';
 
         $stmt = Conexion::conectar() -> prepare($sql);
         $stmt -> execute();

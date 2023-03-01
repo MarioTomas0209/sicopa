@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="<?php echo SERVER_URL ?>views/img/icono.png" type="image/x-icon">
 
     <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/estilos.css">
+    <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/table.responsive.css">
 
 </head>
 

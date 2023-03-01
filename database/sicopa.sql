@@ -9,14 +9,6 @@ CREATE TABLE especialidad (id_especialidad INT PRIMARY KEY AUTO_INCREMENT NOT NU
 CREATE TABLE alergias (id_alergia INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_alergia VARCHAR(30) NOT NULL);
 CREATE TABLE detalles_alergias (id_alergia INT NOT NULL, detalles_alergia TEXT NOT NULL, FOREIGN KEY(id_alergia) REFERENCES alergias(id_alergia));
 
-### ===> ? no esta completa <== ##
-CREATE TABLE usuarios (
-	id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    email VARCHAR(40),
-    rol VARCHAR(30)
-);
-### ===> no esta completa ¿ <== ##
-
 CREATE TABLE paciente (
 	id_paciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -24,10 +16,7 @@ CREATE TABLE paciente (
     fec_nac DATE NOT NULL,
     sexo VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
-<<<<<<< HEAD
-=======
     email VARCHAR(50), 
->>>>>>> 7a810cd04b1e04d0fbdbf60e5edaefa5b6baac9b
     password VARCHAR(120),
         
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -38,8 +27,7 @@ CREATE TABLE doctor (
     id_especialidad INT NOT NULL,
     cedula VARCHAR(50) NOT NULL,
     nombre VARCHAR(30) NOT NULL,
-    ape_pat VARCHAR(30) NOT NULL,
-    ape_mat VARCHAR(30) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
     email VARCHAR(50),
