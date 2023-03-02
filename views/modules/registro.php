@@ -1,5 +1,3 @@
-
-
 <div class="wrapper">
     <div class="container main">
         <div class="row card-login">
@@ -21,18 +19,11 @@
                     
                             <!-- <label for="" class="form-label">Apellido Paterno</label> -->
                             <input type="text" class="form-control mt-3 mb-3" name="apellidos" id="" aria-describedby="helpId" placeholder="Apellidos">
-
-                            <input type="text" class="form-control mt-3 mb-3" name="direccion" id="" aria-describedby="helpId" placeholder="Dirección">
                     
                             <!-- <label for="" class="form-label">Fecha de nacimiento</label> -->
                             <input type="date" class="form-control mt-3 mb-3" name="fec_nac" id="" aria-describedby="helpId" placeholder="Fecha">
                     
-                            <select name="sexo" class="form-control mt-3 mb-3">
-                                <option value="1">-- Seleccione un género --</option>
-                                <option value="2">Hombre</option>
-                                <option value="3">Mujer</option>
-                                <option value="4">No me identifico con ningún género</option>
-                            </select>
+                            <input type="number" class="form-control mt-3 mb-3" name="tel" id="" aria-describedby="helpId" placeholder="Número de teléfono">
                     
                         </div>
                         <hr> <!-- ---------- -->

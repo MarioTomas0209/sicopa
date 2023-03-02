@@ -12,11 +12,10 @@ class RegisterController{
             $apellidos = $_POST['apellidos'];
             $fec_nac = $_POST['fec_nac'];
             $email = $_POST['email'];
-            $sexo = $_POST['sexo'];
-            $direccion = $_POST['direccion'];
+            $tel = $_POST['tel'];
             $password = $_POST['password'];
 
-            RegisterModel::mdlRegistration($nombre, $apellidos, $fec_nac, $email, $sexo, $direccion, $password);
+            RegisterModel::mdlRegistration($nombre, $apellidos, $fec_nac, $email, $tel, $password);
 
             session_start();
             $_SESSION['usuario'] = 'paciente';

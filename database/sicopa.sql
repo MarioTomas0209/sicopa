@@ -14,7 +14,7 @@ CREATE TABLE paciente (
     nombre VARCHAR(30) NOT NULL,
     apellidos VARCHAR(50) NOT NULL,
     fec_nac DATE NOT NULL,
-    sexo VARCHAR(30) NOT NULL,
+    tel VARCHAR(30) NOT NULL,
     direccion VARCHAR(50),
     email VARCHAR(50), 
     password VARCHAR(120),
