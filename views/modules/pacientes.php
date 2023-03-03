@@ -102,20 +102,26 @@
                                 <td><?php echo $registro['email']; ?></td>
                                 <td><?php echo $registro['fec_nac']; ?></td>
                                 <td><?php echo $registro['fecha_registro']; ?></td>
+
+                                <input type="hidden" name="id_paciente" value="<?php echo $registro['id_paciente'] ?>">
+
                                 <td>
-                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <button type="button" class="btn btn-warning">Editar</button>
-
-                                        <a name="eliminar" type="submit" id="btnBorrar" class="btn btn-danger" href="pacientes?txtID=<?php echo $registro['id_paciente']; ?>" role="button">Eliminar</a>
-
-                                        <?php  PatientController::removePatient(); ?>
-                                    </div>
+                                    <form method="POST">
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <button type="button" class="btn btn-warning">Editar</button>
+                                            <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
+                                        </div>
+                                        
+                                        <?php  
+                                            $delete = new PatientController();
+                                            $delete -> removePatient();
+                                        ?>
+                                    </form>
                                 </td>
 
                             </tr>
                             
                         <?php } ?>
-                            
     
                         </tbody>
                     </table>

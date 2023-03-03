@@ -29,9 +29,11 @@ class PatientController {
 
         if ( isset( $_POST['eliminar'] ) ) {
             
-            $txtID = ( isset( $_POST['eliminar'] ) ) ? $_POST['eliminar'] : '';
+            // $txtID = ( isset( $_POST['eliminar'] ) ) ? $_POST['eliminar'] : '';
 
-            PatientModel::removePatient($txtID);
+            // PatientModel::removePatient($txtID);
+
+            echo '<script>window.location = "pacientes"</script>';
         }
     }
 }
