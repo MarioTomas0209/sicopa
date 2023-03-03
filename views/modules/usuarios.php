@@ -19,18 +19,37 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar paciente</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                    </div>
+                <div class="modal-content pl-3 pr-3">
+                    <form method="post" id="users_form">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar asistente o doctor</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="text" class="form-control mt-2 mb-2" name="id_card" id="id_card" aria-describedby="helpId" placeholder="Cédula">
+                                <input type="text" class="form-control mt-2 mb-2" name="name" id="name" aria-describedby="helpId" placeholder="Nombre completo">
+                                <input type="text" class="form-control mt-2 mb-3" name="last_name" id="last_name" aria-describedby="helpId" placeholder="Apellido paterno, Apellido Materno">
+                                <hr>
+                                <input type="text" class="form-control mt-3 mb-2" name="address" id="address" aria-describedby="helpId" placeholder="Dirección">
+                                <input type="text" class="form-control mt-2 mb-2" name="phone" id="phone" aria-describedby="helpId" placeholder="Teléfono">
+                                <input type="text" class="form-control mt-2 mb-2" name="email" id="email" aria-describedby="helpId" placeholder="Correo">
+                                <input type="text" class="form-control mt-2 mb-2" name="password" id="password" aria-describedby="helpId" placeholder="Contraseña">
+                                <select class="form-control mt-2 mb-2" id="profile">
+                                    <option value="1">Asistente</option>
+                                    <option value="2">Doctor</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" id="button_submit">Guardar</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -86,3 +105,5 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript" src="<?php echo SERVER_URL ?>views/js/users.js"></script>

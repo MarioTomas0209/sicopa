@@ -5,10 +5,6 @@ INSERT INTO servicios(ds_servicio) VALUES
 ('Cosmética dental'), ('Extracción'), ('Limpieza'), ('Blanqueamiento dental'), ('Resinas'), ('Incrustaciones'), 
 ('Coronas');
 
-INSERT INTO especialidad(ds_especialidad) VALUES 
-('Odontología general'), ('Cirugía oral y maxilofacial'), ('Endodoncia'), 
-('Odontologia estética'), ('Odontopediatría'), ('Ortodoncia'), ('Patología bucal');
-
 INSERT INTO alergias(ds_alergia) VALUES 
 ('Látex'), ('Resinas'), ('Materiales de impresión'), ('Alergias a metales');
 
@@ -18,11 +14,11 @@ INSERT INTO detalles_alergias(id_alergia, detalles_alergia) VALUES
 (3, 'La probabilidad de alergias por materiales de impresión es baja pero existe, en su mayoría están elaborados con poliésteres, y las precauciones que debe tener el odontólogo o auxiliar consisten en una manipulación adecuada para lograr una perfecta combinación catalizadora de la pasta base, está comprobado que trazos en la pasta catalizados en  contacto con la mucosa de la piel desencadenan alergias, durante su preparación el profesional debe tener sumo cuidado de no mancharse.'),
 (4, 'Los metales de cómo el  Níquel, Cromo, Cobalto y Platino son ampliamente utilizados en odontología, sobretodo en aparatos de ortodoncia, una vez en la boca y en contacto con la mucosa causan absorción en el organismo dando como resultado alergias.');
 
-INSERT INTO doctor(id_especialidad, cedula, nombre, apellidos, direccion, telefono, email, password, perfil) VALUES 
-(1, '0', 'Administrador', 'Sicopa', '', '', 'admin', 'admin', 'admin'),
-(2, '123456789', 'Shaun', 'Murphy Highmore', 'Vancouver, Canadá', '335594', 'shaun.murphy@mail.com', 'gooddoctor', 'admin'),
-(3, '987654321', 'Gregory', 'House Laurie', 'Fox en Los Ángeles', '335594', 'gregory.house@mail.com', 'drhouse', 'admin');
+INSERT INTO doctor(cedula, nombre, apellidos, direccion, telefono, email, password, perfil) VALUES 
+('0', 'Administrador', 'Sicopa', '', '', 'admin', 'admin', 'admin'),
+('123456789', 'Shaun', 'Murphy Highmore', 'Vancouver, Canadá', '335594', 'shaun.murphy@mail.com', 'gooddoctor', 'admin'),
+('987654321', 'Gregory', 'House Laurie', 'Fox en Los Ángeles', '335594', 'gregory.house@mail.com', 'drhouse', 'admin');
 
-INSERT INTO paciente(nombre, apellidos, fec_nac, sexo, direccion, email, password) VALUES
-('Francisco', 'Virbes Juan', '', '', '', 'virbes@mail.com', 'virbes'),
-('Mario Adolfo', 'Tomas Roblero', '', '', '', 'mario@mail.com', 'mario');
+INSERT INTO paciente(nombre, apellidos, fec_nac, tel, email, password) VALUES
+('Francisco', 'Virbes Juan', '', '', 'virbes@mail.com', 'virbes'),
+('Mario Adolfo', 'Tomas Roblero','', '', 'mario@mail.com', 'mario');

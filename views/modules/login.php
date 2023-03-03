@@ -59,4 +59,3 @@
 </div>
 
 <script type="text/javascript" src="<?php echo SERVER_URL ?>views/js/login.js"></script>
-<script type="text/javascript" src="<?php echo SERVER_URL ?>views/js/register.js"></script>
