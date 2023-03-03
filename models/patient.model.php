@@ -16,12 +16,12 @@ class PatientModel{
     }
 
     // FUNCTION THAT ADDS TO THE PATIENTS
-    public static function addPatient($nombre, $apellidos, $fec_nac, $tel, $email, $password) {
+    public static function addPatient( $nombre, $apellidos, $fec_nac, $tel, $email, $password ) {
 
-        $sql = "INSERT INTO paciente (nombre, apellidos, fec_nac, tel, email, password) VALUES (:nombre, :apellidos, :fec_nac, :tel, :email, :password)";
+        $sql = "INSERT INTO paciente ( nombre, apellidos, fec_nac, tel, email, password ) VALUES ( :nombre, :apellidos, :fec_nac, :tel, :email, :password )";
 
 
-        $stmt = Conexion::conectar()-> prepare($sql);
+        $stmt = Conexion::conectar() -> prepare( $sql );
         $stmt->bindParam( ':nombre', $nombre );
         $stmt->bindParam( ':apellidos', $apellidos );
         $stmt->bindParam( ':fec_nac', $fec_nac ); 
@@ -33,6 +33,26 @@ class PatientModel{
         // $stmt->bindParam(':password', $password);
 
         $stmt->execute();
+    }
+
+    // REMOVE PATIENT
+    public static function removePatient($id){
+
+        $sql = "DELETE FROM paciente WHERE id_paciente = :id";
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // $sql = "DELETE FROM paciente WHERE id = :id";
+
+        // $stmt = Conexion::conectar() -> prepare( $sql );
+        // $stmt->bindParam(':id', $id);
+        // $stmt->execute(); 
     }
 }
 

@@ -105,7 +105,10 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                         <button type="button" class="btn btn-warning">Editar</button>
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
+
+                                        <a name="eliminar" type="submit" id="btnBorrar" class="btn btn-danger" href="pacientes?txtID=<?php echo $registro['id_paciente']; ?>" role="button">Eliminar</a>
+
+                                        <?php  PatientController::removePatient(); ?>
                                     </div>
                                 </td>
 

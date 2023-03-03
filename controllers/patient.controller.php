@@ -23,4 +23,15 @@ class PatientController {
         }
 
     }
+
+    // REMOVE PATIENT
+    public static function removePatient(){
+
+        if ( isset( $_POST['eliminar'] ) ) {
+            
+            $txtID = ( isset( $_POST['eliminar'] ) ) ? $_POST['eliminar'] : '';
+
+            PatientModel::removePatient($txtID);
+        }
+    }
 }
