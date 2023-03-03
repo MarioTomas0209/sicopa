@@ -50,7 +50,7 @@
         
         $ruta = explode('/', $ruta);
 
-        if ($ruta[0] == 'login' || $ruta[0] == 'registro') {
+        if ($ruta[0] == 'login' || $ruta[0] == 'registro' || $ruta[0] == 'eliminar') {
             include "views/modules/{$ruta[0]}.php";
         }
         

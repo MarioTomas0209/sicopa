@@ -1,15 +1,14 @@
-
 <section class="container">
     <div class="mt-3 buscador">
         <h2>Pacientes</h2>
-    
+
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
             <button class="btn btn-success" type="submit">Buscar</button>
         </form>
-        
+
     </div>
-    
+
     <div class="mt-3 card">
         <!-- MODAL -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,29 +38,29 @@
                                     <input type="text" class="mt-3 form-control" name="password" id="" aria-describedby="helpId" placeholder="Contraseña">
 
                                 </div>
-                                
+
                             </div>
-                            
+
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
 
                             <?php
-                    
+
                             $add = new PatientController();
-                            $add -> addPatient();
-                
+                            $add->addPatient();
+
                             ?>
 
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-    
-    
+
+
         <div class="card">
             <div class="card-header">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -69,9 +68,9 @@
                 </button>
             </div>
             <div class="card-body">
-    
+
                 <div class="table-responsive">
-    
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -87,48 +86,39 @@
                         </thead>
                         <tbody>
 
-                        <?php
+                            <?php
 
-                        $patient = PatientController::getPatient(); 
+                            $patient = PatientController::getPatient();
 
-                        foreach ($patient as $registro) { ?>
+                            foreach ($patient as $registro) { ?>
 
-                            <tr>
+                                <tr>
 
-                                <td scope="row"><?php echo $registro['id_paciente']; ?></td>
-                                <td><?php echo $registro['nombre']; ?></td>
-                                <td><?php echo $registro['apellidos']; ?></td>
-                                <td><?php echo $registro['tel']; ?></td>
-                                <td><?php echo $registro['email']; ?></td>
-                                <td><?php echo $registro['fec_nac']; ?></td>
-                                <td><?php echo $registro['fecha_registro']; ?></td>
+                                    <td scope="row"><?php echo $registro['id_paciente']; ?></td>
+                                    <td><?php echo $registro['nombre']; ?></td>
+                                    <td><?php echo $registro['apellidos']; ?></td>
+                                    <td><?php echo $registro['tel']; ?></td>
+                                    <td><?php echo $registro['email']; ?></td>
+                                    <td><?php echo $registro['fec_nac']; ?></td>
+                                    <td><?php echo $registro['fecha_registro']; ?></td>
 
-                                <input type="hidden" name="id_paciente" value="<?php echo $registro['id_paciente'] ?>">
-
-                                <td>
-                                    <form method="POST">
+                                    <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                             <button type="button" class="btn btn-warning">Editar</button>
-                                            <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
+                                            <a href="eliminar/<?php echo $registro['id_paciente'] ?>" class="btn btn-danger" name="eliminar">Eliminar</a>
                                         </div>
-                                        
-                                        <?php  
-                                            $delete = new PatientController();
-                                            $delete -> removePatient();
-                                        ?>
-                                    </form>
-                                </td>
+                                    </td>
 
-                            </tr>
-                            
-                        <?php } ?>
-    
+                                </tr>
+
+                            <?php } ?>
+
                         </tbody>
                     </table>
-    
+
                 </div>
             </div>
         </div>
-    
+
     </div>
 </section>
