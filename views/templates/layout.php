@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/estilos.css">
     <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/table.responsive.css">
-
+    <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/tailwind.min.css" media="screen,projection">
 </head>
 
 <body>
