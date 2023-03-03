@@ -2,8 +2,8 @@
 
 class PatientController {
 
-    public static function getPatient() {
-        return PatientModel::getPatient();
+    public static function getPatients() {
+        return PatientModel::getPatients();
     }
 
     // FUNCTION THAT ADDS TO THE PATIENTS
@@ -27,9 +27,9 @@ class PatientController {
     // REMOVE PATIENT
     public static function removePatient(){
 
-        if ( isset( $_POST['eliminar'] ) ) {
+        if ( isset( $_GET['txtID'] ) ) {
             
-            $txtID = ( isset( $_POST['eliminar'] ) ) ? $_POST['eliminar'] : '';
+            $txtID = ( isset( $_GET['txtID'] ) ) ? $_GET['txtID'] : '';
 
             PatientModel::removePatient($txtID);
         }

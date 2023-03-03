@@ -20,7 +20,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="registro" method="post">
+                        <form method="POST">
 
                             <div class="input-box">
 
@@ -75,7 +75,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Número de paciente</th>
+                                <th scope="col">#</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                                 <th>Teléfono</th>
@@ -89,26 +89,27 @@
 
                         <?php
 
-                        $patient = PatientController::getPatient(); 
+                        $patients = PatientController::getPatients(); 
 
-                        foreach ($patient as $registro) { ?>
+                        foreach ($patients as $patient) { ?>
 
                             <tr>
 
-                                <td scope="row"><?php echo $registro['id_paciente']; ?></td>
-                                <td><?php echo $registro['nombre']; ?></td>
-                                <td><?php echo $registro['apellidos']; ?></td>
-                                <td><?php echo $registro['tel']; ?></td>
-                                <td><?php echo $registro['email']; ?></td>
-                                <td><?php echo $registro['fec_nac']; ?></td>
-                                <td><?php echo $registro['fecha_registro']; ?></td>
+                                <td scope="row"><?php echo $patient['id_paciente']; ?></td>
+                                <td><?php echo $patient['nombre']; ?></td>
+                                <td><?php echo $patient['apellidos']; ?></td>
+                                <td><?php echo $patient['tel']; ?></td>
+                                <td><?php echo $patient['email']; ?></td>
+                                <td><?php echo $patient['fec_nac']; ?></td>
+                                <td><?php echo $patient['fecha_registro']; ?></td>
+
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                         <button type="button" class="btn btn-warning">Editar</button>
 
-                                        <a name="eliminar" type="submit" id="btnBorrar" class="btn btn-danger" href="pacientes?txtID=<?php echo $registro['id_paciente']; ?>" role="button">Eliminar</a>
+                                        <a name="eliminar" id="btnBorrar" class="btn btn-danger" href="pacientes?txtID=<?php echo $patient['id_paciente']; ?>" role="button">Eliminar</a>
 
-                                        <?php  PatientController::removePatient(); ?>
+                                        <?php   ?>
                                     </div>
                                 </td>
 

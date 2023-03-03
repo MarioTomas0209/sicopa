@@ -5,7 +5,7 @@ require_once 'connection.php';
 class PatientModel{
 
     // SHOW DATA IN THE TABLE
-    public static function getPatient(){
+    public static function getPatients(){
 
         $sql = 'SELECT * FROM paciente';
         $stmt = Conexion::conectar() -> prepare ($sql);
@@ -48,11 +48,6 @@ class PatientModel{
             return false;
         }
 
-        // $sql = "DELETE FROM paciente WHERE id = :id";
-
-        // $stmt = Conexion::conectar() -> prepare( $sql );
-        // $stmt->bindParam(':id', $id);
-        // $stmt->execute(); 
     }
 }
 
