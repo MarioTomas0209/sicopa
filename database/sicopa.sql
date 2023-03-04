@@ -2,12 +2,67 @@ DROP DATABASE IF EXISTS sicopa;
 CREATE DATABASE IF NOT EXISTS sicopa;
 USE sicopa;
 
-/** Catalogos a considerar [] */
-CREATE TABLE prefijo (id_prefijo INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_prefijo VARCHAR(10) NOT NULL); # Ing, Lic, Sr, Sra, Srta, etc.
-CREATE TABLE servicios (id_servicio INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_servicio VARCHAR(30) NOT NULL);
-CREATE TABLE alergias (id_alergia INT PRIMARY KEY AUTO_INCREMENT NOT NULL, ds_alergia VARCHAR(30) NOT NULL);
-CREATE TABLE detalles_alergias (id_alergia INT NOT NULL, detalles_alergia TEXT NOT NULL, FOREIGN KEY(id_alergia) REFERENCES alergias(id_alergia));
+-- < ------------------------------------ CATALOGOS a considerar []-------------------------------------------- > --
+CREATE TABLE cCatalog(
+	CvCatal INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
+    DsCatal VARCHAR(30), 
+    NmFisCat VARCHAR(30), 
+    NmColCv VARCHAR(30), 
+    NmColDs VARCHAR(30)
+) ENGINE = InnoDb;
 
+CREATE TABLE cServicio  (CvServicio  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsServicio  VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cTipPerson (CvTipPerson INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsTipPerson VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cNombre    (CvNombre    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsNombre    VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cApellido  (CvApellido  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsApellido  VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cGenero    (CvGenero    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsGenero    VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cEstado    (CvEstado    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsEstado    VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cMunicipio (CvMunicipio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsMunicipio VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cColonia   (CvColonia   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsColonia   VARCHAR(30)) Engine = InnoDB;
+CREATE TABLE cCalle     (CvCalle     INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  DsCalle     VARCHAR(30)) Engine = InnoDB;
+-- < ----------------------------------------------------------------------------------------------------------- > ---
+
+
+-- < ------------------------------------ DATOS PERSONALES -------------------------------------------- > --
+CREATE TABLE mPersona(
+	CvPerson INT PRIMARY KEY AUTO_INCREMENT NOT NULL ,
+    
+	CvTipPerson INT, 
+    
+    Curp VARCHAR(20),
+    Rfc VARCHAR(20),
+    Email VARCHAR(30),
+    CvNombre INT, 
+    CvApePat INT, 
+    CvApeMat INT, 
+    FecNac DATE,
+    CvGenero INT, 
+    Telefono VARCHAR(15),
+
+    CvEstado INT,
+    CvMunicipio INT,
+    CvColonia INT,
+    CvCalle INT,
+    Numero VARCHAR(10), 
+    Cp INT,    
+    
+    FOREIGN KEY (CvTipPerson) REFERENCES cTipPerson(CvTipPerson),
+    
+    FOREIGN KEY (CvNombre) REFERENCES cNombre(CvNombre),
+    FOREIGN KEY (CvApePat) REFERENCES cApellido(CvApellido),
+    FOREIGN KEY (CvApeMat) REFERENCES cApellido(CvApellido),
+    FOREIGN KEY (CvGenero) REFERENCES cGenero(CvGenero),
+    
+    FOREIGN KEY (CvEstado) REFERENCES cEstado(CvEstado),
+    FOREIGN KEY (CvMunicipio) REFERENCES cMunicipio(CvMunicipio),
+    FOREIGN KEY (CvColonia) REFERENCES cColonia(CvColonia),
+    FOREIGN KEY (CvCalle) REFERENCES cCalle(CvCalle)
+) Engine = InnoDB;
+-- < ------------------------------------ end of DATOS PERSONALES -------------------------------------------- > --
+
+
+
+-- < ------------------------------------ SICOPA -------------------------------------------- > --
 CREATE TABLE paciente (
 	id_paciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -33,17 +88,6 @@ CREATE TABLE doctor (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-CREATE TABLE alergias_pacientes (
-    id_ INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_paciente INT NOT NULL,
-    id_alergia INT NOT NULL,
-    
-    FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
-    FOREIGN KEY (id_alergia) REFERENCES alergias(id_alergia)
-);
-
-
 CREATE TABLE citas (
 	id_cita INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     id_paciente INT NOT NULL,
@@ -59,3 +103,4 @@ CREATE TABLE citas (
     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
     FOREIGN KEY (id_doctor) REFERENCES doctor(id_doctor)
 );
+-- < ------------------------------------ end of SICOPA -------------------------------------------- > --

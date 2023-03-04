@@ -15,15 +15,8 @@
     <link rel="shortcut icon" href="<?php echo SERVER_URL ?>views/img/icono.png" type="image/x-icon">
 
     <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/estilos.css">
+    <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/mtto.css">
     <link rel="stylesheet" href="<?php echo SERVER_URL ?>views/css/table.responsive.css">
-    <?php 
-        if (isset($_GET["ruta"])) {
-            $ruta = $_GET['ruta'];
-            if ($ruta == "usuarios") {
-                echo '<link rel="stylesheet" href="'.SERVER_URL.'views/css/tailwind.min.css" media="screen,projection">';
-            }
-        }
-    ?>
 </head>
 
 <body>
@@ -40,7 +33,8 @@
             $ruta == "pacientes" ||
             $ruta == "usuarios" ||
             $ruta == "main" ||
-            $ruta == "inicio" ||
+            $ruta == "catalogos" ||
+            $ruta == "datos-personales" ||
             $ruta == "salir"
         ) {
             include 'header.php';

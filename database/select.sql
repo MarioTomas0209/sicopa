@@ -1,10 +1,18 @@
 show tables;
 
-select * from doctor;
-select * from paciente;
-select * from servicios;	
-select * from prefijo;
-select * from especialidad;
-select * from alergias;
+SELECT * FROM cCatalog;
+SELECT * FROM cServicio;
+SELECT * FROM cNombre;
+SELECT * FROM cGenero;
+SELECT * FROM cEstado;
+SELECT * FROM cMunicipio;
+SELECT * FROM cColonia;
+SELECT * FROM cCalle;
 
-SELECT * FROM doctor WHERE id_doctor NOT IN (1)
+SELECT * FROM mPersona;
+SELECT * FROM Paciente;
+SELECT * FROM Doctor;
+SELECT * FROM Citas;
+
+
+SELECT * FROM doctor WHERE id_doctor NOT IN (1);
