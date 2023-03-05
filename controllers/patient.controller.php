@@ -9,29 +9,38 @@ class PatientController {
     // FUNCTION THAT ADDS TO THE PATIENTS
     public static function addPatient() {
 
-        if (isset($_POST['nombre'])) {
+        if ($_POST) {
 
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $fec_nac = $_POST['fec_nac'];
-            $tel = $_POST['tel'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+            $nombre = ( isset($_POST['nombre']) ? $_POST['nombre'] : '');
+            $apellidos = ( isset($_POST['apellidos']) ? $_POST['apellidos'] : '');
+            $fec_nac = ( isset($_POST['fec_nac']) ? $_POST['fec_nac'] : '');
+            $tel = ( isset($_POST['tel']) ? $_POST['tel'] : '');
+            $email = ( isset($_POST['email']) ? $_POST['email'] : '');
+            $password = ( isset($_POST['password']) ? $_POST['password'] : '');
 
             PatientModel::addPatient($nombre, $apellidos, $fec_nac, $tel, $email, $password);
-            header('Location: pacientes');
+
+            // exit();
+
         }
+
+        // if (isset($_POST['nombre'])) {
+
+        //     $nombre = $_POST['nombre'];
+        //     $apellidos = $_POST['apellidos'];
+        //     $fec_nac = $_POST['fec_nac'];
+        //     $tel = $_POST['tel'];
+        //     $email = $_POST['email'];
+        //     $password = $_POST['password'];
+
+        //     PatientModel::addPatient($nombre, $apellidos, $fec_nac, $tel, $email, $password);
+
+        // }
 
     }
 
     // REMOVE PATIENT
-    public static function removePatient(){
-
-        if ( isset( $_GET['txtID'] ) ) {
-            
-            $txtID = ( isset( $_GET['txtID'] ) ) ? $_GET['txtID'] : '';
-
-            PatientModel::removePatient($txtID);
-        }
+    public static function removePatient($id_patient) {
+        PatientModel::removePatient($id_patient);
     }
 }

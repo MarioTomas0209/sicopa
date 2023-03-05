@@ -29,9 +29,6 @@ class PatientModel{
         $stmt->bindParam( ':email', $email );
         $stmt->bindParam( ':password', $password );
 
-        // $password = password_hash($password['password'], PASSWORD_BCRYPT);
-        // $stmt->bindParam(':password', $password);
-
         $stmt->execute();
     }
 
@@ -42,11 +39,7 @@ class PatientModel{
         $stmt = Conexion::conectar()->prepare($sql);
         $stmt->bindParam(':id', $id);
         
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        $stmt->execute();
 
     }
 }
