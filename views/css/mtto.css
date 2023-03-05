@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
+
+.clearfix {
+	float: none;
+	clear: both;
+}
+
+#catalog {
+    margin-top: 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 17px;
+
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+    box-shadow: 3px 3px 10px;
+}
+
+#select {
+    display: block;
+    float: right;
+
+    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-right: 50px;
+
+}
+
+#select span {
+    margin-right: 10px;
+}
+
+/** Mantto */
+.border-title {
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.border-title h1 {
+    text-align: left;
+    margin-top: -10px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.border-title h1 span {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.mantto {
+    float: left;
+
+    width: 60%;
+    margin-left: 30px;
+    margin-right: 60px;
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+}
+
+.mantto-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.mantto-header label {
+    font-size: 21px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#select label {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.data {
+    border: 1px solid rgb(203, 206, 42);
+    margin: 15px 33px 21px 25px;
+}
+
+.tablita {
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow: scroll;
+    height: 200px;
+}
+
+.filasTablita:hover {
+    cursor: pointer;
+}
+
+.table-head {
+    background-color: #435D7D !important;
+    color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+.seleccionada {
+    background-color: rgb(223, 223, 223);
+    color: #000;
+}
+
+.seleccionada:hover {
+    background-color: rgb(223, 223, 223) !important;
+    color: #000 !important;
+}
+
+
+/** Tareas */
+.tareas h1 {
+    margin-left: 0px;
+    text-align: center;
+}
+
+.tareas {
+    float: left;
+    width: 20%;
+    
+    margin-bottom: 15px;
+    padding-bottom: 7px;
+
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.btn-row {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+}
+
+.btn-row .btn-tareas {
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+/* ====================================================================== */
+/*                         Mantto Datos Personales                        */
+/* ====================================================================== */
+#datos-personales {
+    padding: 20px;
+}
+
+.select-tip-perso label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.mantto-dt {
+    margin: 10px;
+    /* background-color: rgb(240, 231, 211); */
+}
+
+#box-com {
+    display: block;
+    float: left;
+
+    width: 75%;
+    margin-right: 35px;
+}
+
+.componentes {
+    float: left;
+
+    width: 30%;
+    height: 50px;
+
+    margin-left: 20px;
+}
+
+.option {
+    background-color: #ccc;
+    color: rgb(49, 49, 49) !important;
+}
+
+.errors {
+    margin-bottom: 45px;
+}
+
+.msg-error {
+    display: none;
+    margin-top: 5px;
+}
+
+.columna {
+    padding: 3px !important;
+}
+
+.select-person {
+    background-color: #F4F4F4;
+}
+
+.table-dt {
+    margin: 0px;
+    box-shadow: 4px 4px 13px;
+}
+
+/* ====================================================================== */
+/*                         Mantto Usuario                                 */
+/* ====================================================================== */
+
+#mtto-users {
+    margin-top: 20px;
+    margin-left: 100px;
+    padding-bottom: 30px;
+}
+
+#box-com-users {
+    display: block;
+    float: left;
+    width: 60%;
+    margin-right: 36px;
+}
+
+.field-mtto-user {
+    width: 50% !important;
+}
+
+#NombreUser {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}

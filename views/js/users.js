@@ -67,20 +67,20 @@ function saveData(e) {
 
 function validateForm(e) {
     if (e.target.value.length > 0) {
-        e.target.classList.remove('border-red-500');
-        e.target.classList.add('border-green-500');
+        e.target.classList.remove('border', 'border-danger');
+        e.target.classList.add('border', 'border-success');
     } else {
-        e.target.classList.remove('border-green-500');
-        e.target.classList.add('border-red-500');
+        e.target.classList.remove('border', 'border-success');
+        e.target.classList.add('border', 'border-danger');
     }
 
     if (e.target.type === 'email') {
         if (re.test(e.target.value)) {
-            e.target.classList.remove('border-red-500');
-            e.target.classList.add('border-green-500');
+            e.target.classList.remove('border', 'border-danger');
+            e.target.classList.add('border', 'border-success');
         } else {
-            e.target.classList.remove('border-green-500');
-            e.target.classList.add('border-red-500');
+            e.target.classList.remove('border', 'border-success');
+            e.target.classList.add('border', 'border-danger');
         }
     }
 

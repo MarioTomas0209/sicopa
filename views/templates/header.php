@@ -25,7 +25,7 @@
                                 $services = ServicesController::getServices();
 
                                 foreach ($services as $key => $value) {
-                                    echo '<li><a class="dropdown-item text-uppercase" href="#">' . $value['ds_servicio'] . '</a></li>';
+                                    echo '<li><a class="dropdown-item text-uppercase" href="#">' . $value['DsServicio'] . '</a></li>';
                                 }
                                 ?>
                             </ul>
@@ -41,35 +41,46 @@
                         <li class="nav-item">
                             <a class="nav-link" href="usuarios">Usuarios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="usuarios">Catálogos</a>
-                        </li>
                     </ul>
 
-                    <div class="dropdown">
-                        <?php
-                        if (isset($_SESSION['usuario'])) {
-                            echo '
-                                <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    '.$_SESSION["nombre"].' '.$_SESSION["apellidos"].'
+                    <div class="d-flex gap-4">
+                        <div class="dropdown">
+                            <a class="nav-link" id="mtto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mtto
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="mtto">
+                                <li><a class="dropdown-item" href="catalogos">Catalogos</a></li>
+                                <li><a class="dropdown-item" href="datos-personales">Datos personales</a></li>
+                                <li><a class="dropdown-item" href="#">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
+                                <li><a class="dropdown-item" href="#">Asignación de privilegios</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <?php
+                            if (isset($_SESSION['usuario'])) {
+                                echo '
+                                <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
+                                    . $_SESSION["nombre"] . ' ' . $_SESSION["apellidos"] . '
                                 </a>
                                 <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
                                     <li><a class="dropdown-item" href="salir">Salir</a></li>
                                 </ul>
                             
-                            ';
-                        } else {
-                            echo '
+                                ';
+                            } else {
+                                echo '
                                 <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Inciar sesion
+                                    Iniciar sesión
                                 </a>
                                 <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
                                     <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
                                     <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
                                 </ul>
-                            ';
-                        }
-                        ?>
+                                ';
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
 

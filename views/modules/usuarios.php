@@ -46,7 +46,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" id="button_submit">Guardar</button>
+                            <button type="submit" class="btn btn-primary" id="button_submit">Guardar</button>
                         </div>
 
                     </form>
