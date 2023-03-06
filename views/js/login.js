@@ -25,7 +25,6 @@ form.addEventListener('submit', function (e) {
                 var response = JSON.parse(xhr.responseText);
 
                 if (!response) {
-                    
                     const error = document.querySelector('div.error-message');
                     if (error) { error.remove() }
 

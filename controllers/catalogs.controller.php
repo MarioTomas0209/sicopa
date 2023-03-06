@@ -19,13 +19,13 @@ if (isset($_POST['action'])) {
 class CatalogsController {
 
     public static function getCatalogs() {
-        return ModelCatalogs::getCatalogs();
+        return CatalogsModel::getCatalogs();
     }
 
     function getDataCatalog() {
         $nameCatalog = $_POST['catalog'];
 
-        $result = ModelCatalogs::getDataCatalog($nameCatalog);
+        $result = CatalogsModel::getDataCatalog($nameCatalog);
 
         $rows = '';
         $attributes = 'class="filasTablita" onclick="seleccionar(this.id);"';
@@ -43,7 +43,7 @@ class CatalogsController {
         $nameCatalog = $_POST['catalog'];
         $Description = $_POST['description'];
 
-        ModelCatalogs::addDescription($nameCatalog, $columns[0], $columns[1], $Description);
+        CatalogsModel::addDescription($nameCatalog, $columns[0], $columns[1], $Description);
 
         echo '';
     }
@@ -53,7 +53,7 @@ class CatalogsController {
         $nameCatalog = $_POST['catalog'];
         $Description = $_POST['description'];
 
-        $result = ModelCatalogs::validateNewData($nameCatalog, $columns[0], $columns[1], $Description);
+        $result = CatalogsModel::validateNewData($nameCatalog, $columns[0], $columns[1], $Description);
 
         if (count($result) == 0) {
             echo 'false';
@@ -70,14 +70,14 @@ class CatalogsController {
 
         if ($ColCv == 'CvApellido') {
 
-            $res_ape1 = ModelCatalogs::getData('CvApePat', $id);
-            $res_ape2 = ModelCatalogs::getData('CvApeMat', $id);
+            $res_ape1 = CatalogsModel::getData('CvApePat', $id);
+            $res_ape2 = CatalogsModel::getData('CvApeMat', $id);
 
             if ($res_ape1 || $res_ape2){echo'true';}else{echo'false';}
 
         } else {
 
-            $res = ModelCatalogs::getData($ColCv, $id);
+            $res = CatalogsModel::getData($ColCv, $id);
 
             if ($res){echo'true';}else{echo'false';}
 
@@ -90,7 +90,7 @@ class CatalogsController {
         $ColCv = $_POST['ColCv'];
         $id = $_POST['id'];
 
-        ModelCatalogs::deleteDescription($nameCatalog, $ColCv, $id);
+        CatalogsModel::deleteDescription($nameCatalog, $ColCv, $id);
         echo '';
     }
 
@@ -101,7 +101,7 @@ class CatalogsController {
         $id_description = $_POST['id_description'];
         $new_description = $_POST['description'];
 
-        ModelCatalogs::editDescription($nameCatalog, $columns[0], $columns[1], $new_description, $id_description);
+        CatalogsModel::editDescription($nameCatalog, $columns[0], $columns[1], $new_description, $id_description);
 
         echo '';
     }

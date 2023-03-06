@@ -11,6 +11,7 @@ const password = document.querySelector('#password');
 const profile = document.querySelector('#profile');
 
 const button_submit = document.querySelector('#button_submit');
+const edit_submit = document.querySelector('#edit_submit');
 // End of variables declaration
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     email.addEventListener('blur', validateForm);
     password.addEventListener('blur', validateForm);
     button_submit.addEventListener('click', saveData);
+    // edit_submit.addEventListener('click', saveData);
 
     // Properties
     button_submit.disabled = true;
@@ -33,12 +35,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function saveData(e) {
     e.preventDefault();
+    ajaxPost(getData());
+}
 
+function showUser(id) {
+    ajaxPost({action: 'getUser', id_user: id});
+}
+
+function deleteUser(id) {
+    confirm('¿Estas seguro que deseas eliminar?') ? ajaxPost({action: 'deleteUser', id_user: id}) : false;
+}
+
+function printDataUser(data_user) {
+    const edit_id_card = document.querySelector('#edit_id_card').value = data_user.cedula;
+    const edit_name = document.querySelector('#edit_name').value = data_user.nombre;
+    const edit_last_name = document.querySelector('#edit_last_name').value = data_user.apellidos;
+    const edit_address = document.querySelector('#edit_address').value = data_user.direccion;
+    const edit_phone = document.querySelector('#edit_phone').value = data_user.telefono;
+    const edit_email = document.querySelector('#edit_email').value = data_user.email;
+    const edit_password = document.querySelector('#edit_password').value = data_user.password;
+    const edit_profile = document.querySelector('#edit_profile').value = data_user.perfil;
+}
+
+function ajaxPost(data) {
     // Create XMLHttpRequest object
     var xhr = new XMLHttpRequest();
 
     // Set up request
-    xhr.open('POST', '../controllers/users.controller.php');
+    xhr.open('POST', 'controllers/users.controller.php');
 
     // Set content type header
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -47,22 +71,39 @@ function saveData(e) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                // var response = JSON.parse(xhr.responseText);
-                window.location.reload();
+
+                if (xhr.responseText) {
+                    const response = JSON.parse(xhr.responseText);
+                    printDataUser(response);
+                } else {
+                    window.location.reload();
+                }
+
             } else {
                 console.log('Error: ' + xhr.status);
             }
         }
     };
 
-    // Create data object to send
-    var data = getData();
-
     // Convert data object to JSON format
     var jsonData = JSON.stringify(data);
 
     // Send request
     xhr.send(jsonData);
+}
+
+function getData() {
+    return {
+        action: 'saveUser',
+        id_card: id_card.value,
+        name: _name.value,
+        last_name: last_name.value,
+        address: address.value,
+        phone: phone.value,
+        email: email.value,
+        password: password.value,
+        profile: profile.value
+    }
 }
 
 function validateForm(e) {
@@ -102,15 +143,5 @@ function validateForm(e) {
     
 }
 
-function getData() {
-    return {
-        cedula: id_card.value,
-        name: _name.value,
-        last_name: last_name.value,
-        address: address.value,
-        phone: phone.value,
-        email: email.value,
-        password: password.value,
-        profile: profile.value
-    }
-}
+
+

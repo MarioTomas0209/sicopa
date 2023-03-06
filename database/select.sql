@@ -8,11 +8,12 @@ SELECT * FROM cEstado;
 SELECT * FROM cMunicipio;
 SELECT * FROM cColonia;
 SELECT * FROM cCalle;
-
 SELECT * FROM mPersona;
+
+
 SELECT * FROM Paciente;
 SELECT * FROM Doctor;
 SELECT * FROM Citas;
 
 
-SELECT * FROM doctor WHERE id_doctor NOT IN (1);
+SELECT * FROM doctor WHERE email NOT IN ('admin');
