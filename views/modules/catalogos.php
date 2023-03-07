@@ -24,14 +24,14 @@
 
     <div class="mt-3 card">
 
-        <!-- Modal Edit user -->
-        <div class="modal fade" id="add_data" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+        <!-- Modal add data in Catalog -->
+        <div class="modal fade" id="add_data" tabindex="-1" aria-labelledby="add_data_catalog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content pl-3 pr-3">
                     <form method="post" id="">
 
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="editLabel">Agregar Dato</h1>
+                            <h1 class="modal-title fs-5" id="add_data_catalog">Insertar dato</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
@@ -43,7 +43,34 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" id="edit_submit">Guardar</button>
+                            <button type="submit" class="btn btn-primary" id="save_data_modal">Guardar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /end of Modal -->
+        <!-- Modal Edit data -->
+        <div class="modal fade" id="edit_data" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content pl-3 pr-3">
+                    <form method="post" id="">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editLabel">Editar dato</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="text" class="form-control mt-2 mb-2" id="edit_data_field" placeholder="Ingrese el dato">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" id="edit_catalog">Guardar</button>
                         </div>
 
                     </form>
@@ -52,10 +79,11 @@
         </div>
         <!-- /end of Modal -->
 
+
         <div class="card-header d-flex justify-content-center gap-4">
-            <button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data"><i class="bi bi-plus-lg"></i> Nuevo</button>
+            <button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data" disabled><i class="bi bi-plus-lg"></i> Nuevo</button>
             <button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
-            <button type="button" class="btn btn-warning" id="modificar"><i class="bi bi-pencil-square"></i> Modificar</button>
+            <button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="bi bi-pencil-square"></i> Modificar</button>
             <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
         </div>
 

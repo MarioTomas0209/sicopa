@@ -1,6 +1,7 @@
 show tables;
 
 SELECT * FROM cCatalog;
+SELECT * FROM cTipPerson;
 SELECT * FROM cServicio;
 SELECT * FROM cNombre;
 SELECT * FROM cGenero;
