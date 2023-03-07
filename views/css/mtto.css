@@ -145,17 +145,6 @@
 /* ====================================================================== */
 /*                         Mantto Datos Personales                        */
 /* ====================================================================== */
-#datos-personales {
-    padding: 20px;
-}
-
-.select-tip-perso label {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 .mantto-dt {
     margin: 10px;
     /* background-color: rgb(240, 231, 211); */
@@ -230,3 +219,5 @@
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
+
+/* DATOS PERSONALES */
