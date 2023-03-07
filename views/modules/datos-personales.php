@@ -31,11 +31,11 @@
 
             <div class="col-md-6 col-sm-12 text-center" role="group" aria-label="Basic mixed styles example">
                 <h4>Tareas</h4>
-                <button type="button" class="btn btn-primary" id="nuevo">Nuevo</button>
-                <button type="button" class="btn btn-danger" id="eliminar">Eliminar</button>
-                <button type="button" class="btn btn-info" id="modificar">Modificar</button>
-                <button type="button" class="btn btn-success" id="cancelar">Cancelar</button>
-                <button type="button" class="btn btn-warning" id="salir">Salir/Regresar</button>
+                <button type="button" class="btn btn-success" id="nuevo"><i class="bi bi-plus-lg"></i> Nuevo</button>
+                <button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
+                <button type="button" class="btn btn-warning" id="modificar"><i class="bi bi-pencil-square"></i> Modificar</button>
+                <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
+                <button type="button" class="btn btn-outline-dark" id="salir"><i class="bi bi-arrow-return-left"></i> Regresar</button>
             </div>
 
         </div>
