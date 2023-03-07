@@ -16,7 +16,7 @@
     </div>
 
     <div class="mt-3 card">
-        <!-- Modal -->
+        <!-- Modal add User -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content pl-3 pr-3">
@@ -35,11 +35,11 @@
                                 <hr>
                                 <input type="text" class="form-control mt-3 mb-2" name="address" id="address" aria-describedby="helpId" placeholder="Dirección">
                                 <input type="text" class="form-control mt-2 mb-2" name="phone" id="phone" aria-describedby="helpId" placeholder="Teléfono">
-                                <input type="text" class="form-control mt-2 mb-2" name="email" id="email" aria-describedby="helpId" placeholder="Correo">
+                                <input type="email" class="form-control mt-2 mb-2" name="email" id="email" aria-describedby="helpId" placeholder="Correo">
                                 <input type="text" class="form-control mt-2 mb-2" name="password" id="password" aria-describedby="helpId" placeholder="Contraseña">
                                 <select class="form-control mt-2 mb-2" id="profile">
-                                    <option value="1">Asistente</option>
-                                    <option value="2">Doctor</option>
+                                    <option value="Asistente">Asistente</option>
+                                    <option value="Doctor">Doctor</option>
                                 </select>
                             </div>
                         </div>
@@ -47,6 +47,45 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary" id="button_submit">Guardar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /end of Modal add User -->
+
+        <!-- Modal Edit user -->
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content pl-3 pr-3">
+                    <form method="post" id="users_edit">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editLabel">Editar Usuario</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="text" class="form-control mt-2 mb-2" name="id_card" id="edit_id_card" aria-describedby="helpId" placeholder="Cédula" disabled>
+                                <input type="text" class="form-control mt-2 mb-2" name="name" id="edit_name" aria-describedby="helpId" placeholder="Nombre completo">
+                                <input type="text" class="form-control mt-2 mb-3" name="last_name" id="edit_last_name" aria-describedby="helpId" placeholder="Apellido paterno, Apellido Materno">
+                                <hr>
+                                <input type="text" class="form-control mt-3 mb-2" name="address" id="edit_address" aria-describedby="helpId" placeholder="Dirección">
+                                <input type="text" class="form-control mt-2 mb-2" name="phone" id="edit_phone" aria-describedby="helpId" placeholder="Teléfono">
+                                <input type="email" class="form-control mt-2 mb-2" name="email" id="edit_email" aria-describedby="helpId" placeholder="Correo">
+                                <input type="text" class="form-control mt-2 mb-2" name="password" id="edit_password" aria-describedby="helpId" placeholder="Contraseña">
+                                <select class="form-control mt-2 mb-2" id="edit_profile" disabled>
+                                    <option value="asistente">Asistente</option>
+                                    <option value="doctor">Doctor</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" id="edit_submit">Guardar</button>
                         </div>
 
                     </form>
@@ -91,8 +130,8 @@
                                     <td>{$user['perfil']}</td>
                                     <td>
                                         <div class='btn-group' role='group' aria-label='Basic mixed styles example'>
-                                            <button type='button' class='btn btn-warning'><i class='bi bi-pencil-fill text-white'></i></button>
-                                            <button type='button' class='btn btn-danger'><i class='bi bi-x-lg'></i></button>
+                                            <button type='button' class='btn btn-warning' id='{$user['id_doctor']}' onclick='showUser(this.id);' data-bs-toggle='modal' data-bs-target='#edit'><i class='bi bi-pencil-fill text-white'></i></button>
+                                            <button type='button' class='btn btn-danger' id='{$user['id_doctor']}' onclick='deleteUser(this.id);'><i class='bi bi-x-lg'></i></button>
                                         </div>
                                     </td>
                                 </tr>

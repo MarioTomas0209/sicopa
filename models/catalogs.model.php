@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-class ModelCatalogs {
+class CatalogsModel {
 
     /** Get All Catalogs */
     public static function getCatalogs() {

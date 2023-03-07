@@ -26,8 +26,8 @@ INSERT INTO mPersona(CvTipPerson, Curp, Rfc, Email, CvNombre, CvApePat, CvApeMat
 
 INSERT INTO doctor(cedula, nombre, apellidos, direccion, telefono, email, password, perfil) VALUES 
 ('0', 'Administrador', 'Sicopa', '', '', 'admin', 'admin', 'admin'),
-('123456789', 'Shaun', 'Murphy Highmore', 'Vancouver, Canadá', '335594', 'shaun.murphy@mail.com', 'gooddoctor', 'admin'),
-('987654321', 'Gregory', 'House Laurie', 'Fox en Los Ángeles', '335594', 'gregory.house@mail.com', 'drhouse', 'admin');
+('123456789', 'Shaun', 'Murphy Highmore', 'Vancouver, Canadá', '335594', 'shaun.murphy@mail.com', 'gooddoctor', 'doctor'),
+('987654321', 'Gregory', 'House Laurie', 'Fox en Los Ángeles', '335594', 'gregory.house@mail.com', 'drhouse', 'doctor');
 
 INSERT INTO paciente(nombre, apellidos, fec_nac, tel, email, password) VALUES
 ('Francisco', 'Virbes Juan', '', '', 'virbes@mail.com', 'virbes'),

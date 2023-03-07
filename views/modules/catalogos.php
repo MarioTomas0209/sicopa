@@ -1,96 +1,84 @@
-<div class="content-wrapper">
+<section class="container">
+    <div class="mt-3 buscador">
+        <h2>Mantenimiento de Catálogos</h2>
 
-    <section class="content-header">
-        <h1>Mantenimiento de Catálogos</h1>
-    </section>
+        <div class="catalogs">
+            <select class="form-control" name="nombreCatalogo" id="nombreCatalogo" style="height: 90%;">
+                <option value="default" selected>-- Seleccione un catálogo --</option>
 
-    <section class="content">
-        <div class="box">
-            <div id="catalog">
-                <div id="select">
-                    <label>Nombre del Catálogo</label>
+                <?php
+                $catalogs = CatalogsController::getCatalogs();
 
-                    <select class="selectpicker" name="nombreCatalogo" id="nombreCatalogo">
-                        <option value="default" selected>-- Seleccione un catálogo --</option>
+                foreach ($catalogs as $key => $value) {
+                    echo '<option value="' . $value['NmFisCat'] . '">' . $value['DsCatal'] . '</option>';
+                }
+                ?>
+            </select>
+        </div>
 
-                        <?php 
-                            $catalogs = CatalogsController::getCatalogs();
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
 
-                            foreach ($catalogs as $key => $value) {
-                                echo '<option value="'.$value['NmFisCat'].'">'.$value['DsCatal'].'</option>';
-                            }
-                        ?> 
-                    </select>
+    <div class="mt-3 card">
 
-                </div>
-                <div class="clearfix"></div>
+        <!-- Modal Edit user -->
+        <div class="modal fade" id="add_data" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content pl-3 pr-3">
+                    <form method="post" id="">
 
-                <!-- Mantto  -->
-                <div class="mantto border-title">
-                    <h1><span>Mantto</span></h1>
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editLabel">Agregar Dato</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                    <div class="mantto-header">
-                        <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="descripcion" placeholder="Ingrese el dato" disabled>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="text" class="form-control mt-2 mb-2" id="catalog_data" placeholder="Ingrese el dato">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="data border-title">
-                        <h1><span>Datos</span></h1>
-
-                        <div class="tablita" id="tablita">
-                            <table class="table table-bordered dt-responsive table-hover" id="boney">
-                                <thead class="table-head">
-                                    <tr>
-                                        <th scope="col">Clave</th>
-                                        <th scope="col">Descripción</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="datosCatalog"></tbody>
-
-                                <tfoot></tfoot>
-                            </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" id="edit_submit">Guardar</button>
                         </div>
 
-                    </div>
+                    </form>
                 </div>
-
-                <!-- Tareas -->
-                <div class="tareas border-title">
-                    <h1><span>Tareas</span></h1>
-
-                    <div class="btn-row">
-                        <button class="btn btn-tareas btn-primary" id="nuevo" disabled>Nuevo</button>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-tareas btn-primary" id="eliminar" disabled>Eliminar</button>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-tareas btn-primary" id="modificar" disabled>Modificar</button>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-tareas btn-primary" id="cancelar" disabled>Cancelar</button>
-                    </div>
-
-                    <div class="btn-row">
-                        <button class="btn btn-tareas btn-primary" id="regresar" disabled>Salir/Regresar</button>
-                    </div>
-
-                </div>
-
-                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
         </div>
-    </section>
-</div>
+        <!-- /end of Modal -->
+
+        <div class="card-header d-flex justify-content-center gap-4">
+            <button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data"><i class="bi bi-plus-lg"></i> Nuevo</button>
+            <button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
+            <button type="button" class="btn btn-warning" id="modificar"><i class="bi bi-pencil-square"></i> Modificar</button>
+            <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped dt-responsive tablaCategorias mt-4" width="100%" id="table">
+                    <thead>
+                        <tr>
+                            <th>Clave</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="datosCatalog"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer">Designed and Developed by Francisco Virbes &copy;</div>
+
+    </div>
+
+</section>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo SERVER_URL?>views/js/catalogs.js"></script>
+<script type="text/javascript" src="<?php echo SERVER_URL ?>views/js/catalogs.js"></script>

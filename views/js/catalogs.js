@@ -9,7 +9,7 @@ $(document).ready(function () {
             clear();
         } else {
             getCatalogs();
-            enabled_disabled(true, '#3c8dbc', 'Nuevo');
+            enabled_disabled(true, 'Nuevo');
             clear();
             $('#cancelar').prop('disabled', true);
             $('#eliminar').prop('disabled', true);
@@ -301,9 +301,8 @@ $(document).ready(function () {
     }
 
     /** Habilitar y Desabilitar el campo de "Descripición" */
-    function enabled_disabled(value, background, text) {
+    function enabled_disabled(value, text) {
         $('#descripcion').prop('disabled', value);
-        $('#nuevo').css('background-color', background);
         $('#nuevo').text(text);
     }
 
@@ -311,7 +310,7 @@ $(document).ready(function () {
     function clear() {
         $('#descripcion').val('');
         $('.filasTablita').removeClass('seleccionada');
-        enabled_disabled(true, '#3c8dbc', 'Nuevo');
+        enabled_disabled(true, 'Nuevo');
         $('#eliminar').prop('disabled', true);
         $('#modificar').prop('disabled', true);
         $('#cancelar').prop('disabled', true);
@@ -376,7 +375,7 @@ function seleccionar(id_fila) {
     $('#' + id_fila).addClass('seleccionada');
     
     $('#descripcion').prop('disabled', true).val('');
-    $('#nuevo').text('Nuevo').css('background-color', '#3c8dbc').removeAttr('disabled');
+    $('#nuevo').text('Nuevo').removeAttr('disabled');
 
     $('#cancelar').removeAttr('disabled');
     $('#modificar').removeAttr('disabled');
