@@ -1,28 +1,44 @@
-$(document).ready(function() {
+// Variables declaration
+const TIP_PERSON = document.getElementById('TipPerson');
 
-    $('#curp').keyup(function() {
-        repeatCURP();
-    });
+const NEW_BUTTON = document.getElementById('nuevo');
+const DELETE_BUTTON = document.getElementById('eliminar');
+const EDIT_BUTTON = document.getElementById('modificar');
+const CANCEL_BUTTON = document.getElementById('cancelar');
 
-    $('#nuevo').click(function() {
-        addNewPerson();
-    });
+const CURP = document.getElementById('curp');
+const RFC = document.getElementById('rfc');
+const EMAIL = document.getElementById('email');
+const NOMBRE = document.getElementById('nombre');
+const APE_PAT = document.getElementById('ApePat');
+const APE_MAT = document.getElementById('ApeMat');
+const FEC_NAC = document.getElementById('fecha');
+const GENERO = document.getElementById('genero');
+const TELEFONO = document.getElementById('telefono');
+const ESTADO = document.getElementById('estado');
+const MUNICIPIO = document.getElementById('municipio');
+const COLONIA = document.getElementById('colonia');
+const CALLE = document.getElementById('calle');
+const NUMERO = document.getElementById('numero');
+const CP = document.getElementById('cp');
+// End of variables declaration
 
-    $('#eliminar').click(function() {
-        deletePerson();
-    });
 
-    $('#modificar').click(function() {
-        editPerson();
-    });
+// Events Listeners
+CURP.addEventListener('blur', repeatCURP);
+NEW_BUTTON.addEventListener('click', addNewPerson);
+DELETE_BUTTON.addEventListener('click', deletePerson);
+EDIT_BUTTON.addEventListener('click', editPerson);
+CANCEL_BUTTON.addEventListener('click', cancelar);
+// End of events Listeners
 
-    $('#cancelar').click(function() {
-        cancelar();
-    });
 
-    validarCaracteresCurpRfc();
-    setFecMax();
-});
+// Settings for inputs
+enableComponents(false);
+validateRfcCurp();
+setFecMax();
+// End of settings for inputs
+
 
 /** --------------- Logic validate curp Repeat ----------------  */
 function repeatCURP() {
@@ -31,68 +47,68 @@ function repeatCURP() {
         if (($('#curp').val()).length == 18) {
 
             let curp = $('#curp').val();
-    
+
             $.ajax({
-                
-                type: 'POST', 
+
+                type: 'POST',
                 url: 'controllers/datperson.controller.php',
                 data: {
                     action: "existsCURP",
                     curp: curp
                 }
-    
+
             }).done(function (result) {
 
-                if ( result ) {
+                if (result) {
                     let data = JSON.parse(result);
                     let ques = '¿Qué desea hacer con ' + data.DsNombre + ' ' + data.DsApellido + '?';
-                    
-                    
+
+
                     swal({
-    
+
                         title: '¡Curp repetida!',
                         text: ques,
                         type: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,
-    
+
                         confirmButtonColor: '#7367F0',
                         confirmButtonText: 'Editar',
-    
+
                         cancelButtonColor: '#d33',
                         cancelButtonText: 'Eliminar'
-    
+
                     }).then((result) => {
-    
+
                         if (result.dismiss == 'close' || result.dismiss == 'overlay' || result.dismiss == 'esc') {
                             $('#curp').val('');
                         } else if (result.dismiss == 'cancel') {
                             // Eliminar
                             $.ajax({
-    
+
                                 type: 'POST',
                                 url: 'controllers/datperson.controller.php',
                                 data: {
-                                    action: 'deleteByCurp', 
+                                    action: 'deleteByCurp',
                                     CvPerson: data.CvPerson
                                 }
-    
+
                             }).done(function (result) {
                                 enableComponents(false);
                                 clearComponents();
                                 getDataTable();
-    
+
                                 swal({
-                                    type: 'success', 
-                                    title: 'Se ha eliminado ' + data.DsNombre + ' ' + data.DsApellido, 
+                                    type: 'success',
+                                    title: 'Se ha eliminado ' + data.DsNombre + ' ' + data.DsApellido,
                                     showConfirmButton: false,
                                     timer: 1200
                                 });
-    
+
                             }).fail(function () {
                                 alert('ERROR');
                             });
-    
+
                         } else if (result.value) {
                             // Editar
                             showData(data.CvPerson);
@@ -102,14 +118,14 @@ function repeatCURP() {
                             $('#' + data.CvPerson).addClass('seleccionada');
                             $('#curp').prop('disabled', true);
                         }
-    
+
                     });
-                } 
-    
+                }
+
             }).fail(function () {
                 alert('ERROR');
             });
-    
+
         }
     }
 
@@ -127,12 +143,12 @@ function addNewPerson() {
         $('#nuevo').css('background-color', 'green').text('Grabar');
         $('.filasTablita').removeClass('seleccionada');
         $('#eliminar').prop('disabled', true);
-        $('#modificar').prop('disabled', true);        
+        $('#modificar').prop('disabled', true);
 
     } else if ($('#nuevo').text() == 'Grabar') {
 
         let data = getData();
-        
+
         if (data) {
             data.action = 'add';
 
@@ -162,35 +178,35 @@ function addNewPerson() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Aceptar',
-            }).then((result) => {
-                
-                if (result.value) {
+        }).then((result) => {
 
-                    let data = getData();
+            if (result.value) {
 
-                    if (data) {
-                        data.action = 'edit';
-                        data.CvPerson = $('.seleccionada').attr('id');
-            
-                        $.ajax({
-                            
-                            type: 'POST',
-                            url: 'controllers/datperson.controller.php',
-                            data: data
-            
-                        }).done(function(result) {
-                            cancelar();
-                            getDataTable();
-                        }).fail(function() {
-                            alert('ERROR');
-                        });
-                    }
-                    
-                } else {
-                    cancelar();
+                let data = getData();
+
+                if (data) {
+                    data.action = 'edit';
+                    data.CvPerson = $('.seleccionada').attr('id');
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: 'controllers/datperson.controller.php',
+                        data: data
+
+                    }).done(function (result) {
+                        cancelar();
+                        getDataTable();
+                    }).fail(function () {
+                        alert('ERROR');
+                    });
                 }
-                
+
+            } else {
+                cancelar();
             }
+
+        }
         );
 
     }
@@ -199,41 +215,41 @@ function addNewPerson() {
 
 function getData() {
 
-    const TipPerson      = $( '#TipPerson' ).val();
+    const TipPerson = $('#TipPerson').val();
 
-    const Curp           = $( '#curp'      ).val();
-    const Rfc            = $( '#rfc'       ).val();
-    const Email          = $( '#email'     ).val();
-    const Name           = $( '#nombre'    ).val();
-    const LastName       = $( '#ApePat'    ).val();
-    const MotherLastName = $( '#ApeMat'    ).val();
-    const Date           = $( '#fecha'     ).val();
-    const Gender         = $( '#genero'    ).val();
-    const Phone          = $( '#telefono'  ).val();
+    const Curp = $('#curp').val();
+    const Rfc = $('#rfc').val();
+    const Email = $('#email').val();
+    const Name = $('#nombre').val();
+    const LastName = $('#ApePat').val();
+    const MotherLastName = $('#ApeMat').val();
+    const Date = $('#fecha').val();
+    const Gender = $('#genero').val();
+    const Phone = $('#telefono').val();
 
-    const State          = $( '#estado'    ).val();
-    const Municipality   = $( '#municipio' ).val();
-    const Suburb         = $( '#colonia'   ).val();
-    const Street         = $( '#calle'     ).val();
-    const Number         = $( '#numero'    ).val();
-    const PostalCode     = $( '#cp'        ).val();
+    const State = $('#estado').val();
+    const Municipality = $('#municipio').val();
+    const Suburb = $('#colonia').val();
+    const Street = $('#calle').val();
+    const Number = $('#numero').val();
+    const PostalCode = $('#cp').val();
 
     const data = {
         "TipPerson": TipPerson,
-        "Name": Name, 
-        "LastName": LastName, 
-        "MotherLastName": MotherLastName, 
+        "Name": Name,
+        "LastName": LastName,
+        "MotherLastName": MotherLastName,
         "Date": Date,
-        "Gender": Gender, 
-        "Phone": Phone, 
-        "Email": Email, 
-        "Curp": Curp, 
-        "Rfc": Rfc, 
-        "State": State, 
-        "Municipality": Municipality, 
-        "Suburb": Suburb, 
-        "Street": Street, 
-        "Number": Number, 
+        "Gender": Gender,
+        "Phone": Phone,
+        "Email": Email,
+        "Curp": Curp,
+        "Rfc": Rfc,
+        "State": State,
+        "Municipality": Municipality,
+        "Suburb": Suburb,
+        "Street": Street,
+        "Number": Number,
         "PostalCode": PostalCode
     };
 
@@ -260,7 +276,7 @@ function validateData(data) {
 
     if (data.Name == 0) {
         errors.push('NombreError');
-    } 
+    }
 
     if (data.LastName == 0) {
         errors.push('ApePatError');
@@ -336,12 +352,12 @@ function deletePerson() {
 
         type: 'POST',
         url: 'controllers/datperson.controller.php',
-        data: {action: 'existsUser', id: id}
+        data: { action: 'existsUser', id: id }
 
-    }).done(function(res) {
+    }).done(function (res) {
 
         if (JSON.parse(res)) {
-            
+
             swal({
                 type: "error",
                 title: "¡No se puede eliminar!",
@@ -363,28 +379,28 @@ function deletePerson() {
             }).then((result) => {
 
                 if (result.value) {
-        
+
                     $.ajax({
 
                         type: 'POST',
                         url: 'controllers/datperson.controller.php',
-                        data: {action: 'delete', id: id}
-                
+                        data: { action: 'delete', id: id }
+
                     }).done(function (res) {
                         getDataTable();
                     }).fail(function () {
                         alert('ERROR');
                     });
-                    
+
                     enableComponents(false);
                     clearComponents();
 
                 }
-                    
+
             });
         }
 
-    });   
+    });
 
 }
 /** ----------- End Logic Delete a person in table mPersona ------------  */
@@ -392,7 +408,7 @@ function deletePerson() {
 
 /** --------------- Logic Edit a person in table mPersona ----------------  */
 function editPerson() {
-    $('#nuevo').text('Guardar').css('background-color','green');
+    $('#nuevo').text('Guardar').css('background-color', 'green');
     enableComponents(true);
     $('#curp').prop('disabled', true);
     $('#modificar').prop('disabled', true);
@@ -403,32 +419,28 @@ function editPerson() {
 
 /** ------------- Logic Cancelar Button --------------  */
 function cancelar() {
-    $('#nuevo').text('Nuevo').css('background-color', '#3c8dbc');
     $('.filasTablita').removeClass('seleccionada');
-    $('#CurpError').text('Ingrese una CURP');
     enableComponents(false);
     clearComponents();
 }
 /** ----------- End Logic Cancelar Button ------------  */
 
 
-/** ------------- Select Row in table mPersonas --------------  */
+// Select Row in table mPersonas
 function selectRow(id_fila) {
-    clearErrors();
     showData(id_fila);
 
     $('.filasTablita').removeClass('seleccionada');
     $('#' + id_fila).addClass('seleccionada');
 
     enableComponents(false);
-    
+
     $('#eliminar').prop('disabled', false);
     $('#modificar').prop('disabled', false);
     $('#cancelar').prop('disabled', false);
 
     $('#CurpError').text('Ingrese una CURP');
 }
-/** ------------- End Select Row in table mPersonas --------------  */
 
 
 /** ------------- Show Data in Components (Inputs, Selects) --------------  */
@@ -438,7 +450,7 @@ function showData(id_fila) {
 
         type: 'POST',
         url: 'controllers/datperson.controller.php',
-        data: {action: 'getDataPerson', id: id_fila}
+        data: { action: 'getDataPerson', id: id_fila }
 
     }).done(function (result) {
         setData(JSON.parse(result));
@@ -450,89 +462,46 @@ function showData(id_fila) {
 }
 
 function setData(data) {
-    $( '#TipPerson' ).val( data.CvTipPerson );
-    $( '#curp'      ).val( data.Curp        );
-    $( '#rfc'       ).val( data.Rfc         );
-    $( '#email'     ).val( data.Email       );
-    $( '#nombre'    ).val( data.CvNombre    );
-    $( '#ApePat'    ).val( data.CvApePat    );
-    $( '#ApeMat'    ).val( data.CvApeMat    );
-    $( '#fecha'     ).val( data.FecNac      );
-    $( '#genero'    ).val( data.CvGenero    );
-    $( '#telefono'  ).val( data.Telefono    );
-    $( '#estado'    ).val( data.CvEstado    );
-    $( '#municipio' ).val( data.CvMunicipio );
-    $( '#colonia'   ).val( data.CvColonia   );
-    $( '#calle'     ).val( data.CvCalle     );
-    $( '#numero'    ).val( data.Numero      );
-    $( '#cp'        ).val( data.Cp          );
+    $('#TipPerson').val(data.CvTipPerson);
+    $('#curp').val(data.Curp);
+    $('#rfc').val(data.Rfc);
+    $('#email').val(data.Email);
+    $('#nombre').val(data.CvNombre);
+    $('#ApePat').val(data.CvApePat);
+    $('#ApeMat').val(data.CvApeMat);
+    $('#fecha').val(data.FecNac);
+    $('#genero').val(data.CvGenero);
+    $('#telefono').val(data.Telefono);
+    $('#estado').val(data.CvEstado);
+    $('#municipio').val(data.CvMunicipio);
+    $('#colonia').val(data.CvColonia);
+    $('#calle').val(data.CvCalle);
+    $('#numero').val(data.Numero);
+    $('#cp').val(data.Cp);
 }
 /** ----------- End Show Data in Components (Inputs, Selects) ------------  */
 
 
-/** ------------- Activar Mensajes de error --------------  */
-function errors_msg(errors) {
-
-    clearErrors();
-
-    $('.componentes').addClass('errors');
-
-    errors.forEach(element => {
-        $('#' + element).css('display', 'block');
-    });
-
-}
-
-function clearErrors() {
-    const errors = ['CurpError', 'RfcError', 'TipPersonError', 'NombreError', 'ApePatError', 'ApeMatError', 'DateError', 'GeneroError', 'MatriculaError', 'EmailError', 'TelefonoError','CalleError', 'ColoniaError', 'MunicipioError', 'EstadoError', 'CpError'];
-
-    errors.forEach(element => {
-        $('#' + element).css('display', 'none');
-    });
-}
-/** ----------- End Activar Mensajes de error ------------  */
 
 
-/** ------------- Enable & Disable Componets --------------  */
-function enableComponents(value) {
-    $('input').prop('disabled', !value);
-    $('select').prop('disabled', !value);
-    $('button').prop('disabled', !value);
-
-    $('#nuevo').prop('disabled', false);
-    $('#salir').prop('disabled', false);
-}
-/** ----------- END Enable & Disable Componets ------------  */
 
 
 /** --------------- Clear Components ----------------  */
 function clearComponents() {
     $('input').val('');
-    $('.default').prop('selected', true);
-
-    clearErrors();
-    $('.componentes').removeClass('errors');
-    $('#nuevo').text('Nuevo').css('background-color', 'green');
+    $('select').val('0');
 }
 /** ------------- End Clear Components --------------  */
 
 
-/** ------------- Validar Correo --------------  */
-function validateEmail(email) {
-    var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-    return !regex.test(email.trim());
-}
-/** ----------- End Validar Correo ------------  */
 
-
-/** --------------- Get Data (Table) ----------------  */
 function getDataTable() {
 
     $.ajax({
 
         type: 'POST',
         url: 'controllers/datperson.controller.php',
-        data: {action: 'getDataTable'}
+        data: { action: 'getDataTable' }
 
     }).done(function (result) {
         $('#PeopleTable').html(result);
@@ -541,27 +510,31 @@ function getDataTable() {
     });
 
 }
-/** ------------- End Get Data (Table) --------------  */
 
 
-/** ------------- Validar campos de texto (RFC, CURP) --------------  */
-function validarCaracteresCurpRfc() {
-    $('#curp, #rfc').bind('keypress', function(event) {
-        var regex = new RegExp("^[a-zA-Z0-9]+$"); 
+/** ------------- Validations --------------  */
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return !re.test(email.trim());
+}
+
+function validateRfcCurp() {
+    $('#curp, #rfc').bind('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
         if (!regex.test(key)) {
             event.preventDefault();
             return false;
-        } 
+        }
     });
 
-    $('#cp, #telefono').bind('keypress', function(event) {
-        var regex = new RegExp("^[0-9]+$"); 
+    $('#cp, #telefono').bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
         if (!regex.test(key)) {
             event.preventDefault();
             return false;
-        } 
+        }
     });
 }
 /** ------------- END Validar campos de texto (RFC, CURP) --------------  */
@@ -570,11 +543,20 @@ function validarCaracteresCurpRfc() {
 
 
 function setFecMax(id) {
-    Date.prototype.toDateInputValue = (function() {
+    Date.prototype.toDateInputValue = (function () {
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0,10);
+        return local.toJSON().slice(0, 10);
     });
 
     $('#fecha').prop('max', new Date().toDateInputValue());
+}
+
+// Enable & Disable Componets
+function enableComponents(value) {
+    $('input').prop('disabled', !value);
+    $('select').prop('disabled', !value);
+    $('button').prop('disabled', !value);
+
+    NEW_BUTTON.removeAttribute('disabled');
 }
