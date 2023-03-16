@@ -39,23 +39,21 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="">|</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="catalogos">Catalogos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="datos-personales">Datos Personales</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="usuarios">Usuarios</a>
                         </li>
                     </ul>
 
                     <div class="d-flex gap-4">
-                        <div class="dropdown">
-                            <a class="nav-link" id="mtto" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Mtto
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="mtto">
-                                <li><a class="dropdown-item" href="catalogos">Catalogos</a></li>
-                                <li><a class="dropdown-item" href="datos-personales">Datos personales</a></li>
-                                <li><a class="dropdown-item" href="#">Usuarios</a></li>
-                                <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
-                                <li><a class="dropdown-item" href="#">Asignación de privilegios</a></li>
-                            </ul>
-                        </div>
                         <div class="dropdown">
                             <?php
                             if (isset($_SESSION['usuario'])) {

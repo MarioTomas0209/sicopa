@@ -59,7 +59,17 @@ CREATE TABLE mPersona(
     FOREIGN KEY (CvCalle) REFERENCES cCalle(CvCalle)
 ) Engine = InnoDB;
 -- < ------------------------------------ end of DATOS PERSONALES -------------------------------------------- > --
-
+CREATE TABLE Users (
+	CvUser    INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	CvPerson  INT  		   NOT NULL,
+	Login 	  VARCHAR(30)  NOT NULL,
+	Password  VARCHAR(100) NOT NULL,
+	FecIni    DATE         NOT NULL,
+	FecFin    DATE         NOT NULL,
+	EdoCta    BOOLEAN      NOT NULL, 
+    
+    FOREIGN KEY (CvPerson) REFERENCES mPersona(CvPerson)
+)ENGINE = InnoDB;
 
 
 -- < ------------------------------------ SICOPA -------------------------------------------- > --

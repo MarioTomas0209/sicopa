@@ -10,6 +10,7 @@ SELECT * FROM cMunicipio;
 SELECT * FROM cColonia;
 SELECT * FROM cCalle;
 SELECT * FROM mPersona;
+SELECT * FROM Users;
 
 
 SELECT * FROM Paciente;

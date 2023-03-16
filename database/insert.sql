@@ -24,6 +24,8 @@ INSERT INTO cServicio(DsServicio) VALUES ('Limpieza bucal'), ('Empastes'), ('End
 INSERT INTO mPersona(CvTipPerson, Curp, Rfc, Email, CvNombre, CvApePat, CvApeMat, FecNac, CvGenero, Telefono, CvEstado, CvMunicipio, CvColonia, CvCalle, Numero, Cp) VALUES
 (1, 1, 1, 1, 1, 1, 1, '', 1, '963', 1, 1, 1, 1, 'S/N', '30038');
 
+INSERT INTO Users() VALUES(0, 1, 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', '', '', true);
+
 INSERT INTO doctor(cedula, nombre, apellidos, direccion, telefono, email, password, perfil) VALUES 
 ('0', 'Administrador', 'Sicopa', '', '', 'admin', 'admin', 'admin'),
 ('123456789', 'Shaun', 'Murphy Highmore', 'Vancouver, Canadá', '335594', 'shaun.murphy@mail.com', 'gooddoctor', 'doctor'),
