@@ -7,19 +7,23 @@ class LoginController {
     }   
 
     public static function getUser($data) {
-        $table = $data['table'];
         $email = $data['email'];
         $password = $data['password'];
 
-        $user = LoginModel::getUser($table, $email, $password);
+        $user = LoginModel::getUser($email, $password);
 
         if ($user) {
+
+            if ($user['fecini']) {
+                
+            }
+
+
             session_start();
-            $_SESSION['usuario'] = $table;
             $_SESSION['id_'] = 1;
-            $_SESSION['nombre'] = $user['nombre'];
-            $_SESSION['apellidos'] = $user['apellidos'];
-            $_SESSION['email'] = $user['email'];
+            $_SESSION['nombre'] = $user['dsnombre'];
+            $_SESSION['apellidos'] = $user['dsapellido'];
+            $_SESSION['login'] = $user['login'];
         }
         
         echo json_encode($user); // Return response in JSON format

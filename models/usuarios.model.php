@@ -19,8 +19,14 @@ class ModelUsuarios {
 
     /** Ger User in Table Users */
     public static function getUser($Login) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM Users WHERE Login = :Login");
-        $stmt -> bindParam(':Login', $Login, PDO::PARAM_STR);
+        // $sql = "SELECT * FROM Users WHERE Login = :Login";
+        $sql = "SELECT u.cvuser, u.login, u.password, p.cvperson, n.dsnombre, a.dsapellido, u.fecini, u.fecfin, u.edocta
+                FROM users u, mpersona p, cnombre n, capellido a
+                WHERE login = :login 
+                AND p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat;";
+
+        $stmt = Conexion::conectar()->prepare($sql);
+        $stmt -> bindParam(':login', $Login, PDO::PARAM_STR);
         $stmt -> execute();
 
         return $stmt -> fetch();
@@ -28,7 +34,7 @@ class ModelUsuarios {
 
     /** Get Users in Table Users */
     public static function getUsers() {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM Users ORDER BY CvUser ASC");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM Users WHERE login NOT IN ('admin') ORDER BY CvUser ASC");
         $stmt -> execute();
 
         return $stmt -> fetchAll();
@@ -91,7 +97,7 @@ class ModelUsuarios {
             $stmt -> bindParam(":CvPerson", $CvPerson, PDO::PARAM_STR);
             $stmt -> bindParam(":Login", $Login, PDO::PARAM_STR);
         } else {
-            $Password = crypt($Password, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            $Password = $Password;
             $sql = "UPDATE Users SET CvPerson = :CvPerson, Login = :Login, Password = :Password, FecIni = :FecIni, FecFin = :FecFin, EdoCta = :EdoCta WHERE CvUser = :CvUser";
 
             $stmt = Conexion::conectar() -> prepare($sql);

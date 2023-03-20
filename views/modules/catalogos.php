@@ -15,11 +15,6 @@
                 ?>
             </select>
         </div>
-
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
     </div>
 
     <div class="mt-3 card">
@@ -102,7 +97,9 @@
             </div>
         </div>
 
-        <div class="card-footer">Designed and Developed by Francisco Virbes &copy;</div>
+        <div class="card-footer text-center">
+            <p class="m-0">Designed and Developed by <b class="text-danger">Devs</b><b class="text-primary">Web</b> &copy;</p>
+        </div>
 
     </div>
 

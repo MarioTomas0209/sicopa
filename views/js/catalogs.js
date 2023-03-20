@@ -11,6 +11,7 @@ const T_BODY = $('#datosCatalog');
 
 
 // Events Listeners
+NEW_BUTTON.click(e => $('#catalog_data').val(''));
 SELECT_CATALOG.on('change', changeCatalog);
 SAVE_BUTTON_MODAL.click(addDescription);
 SAVE_BUTTON_MODAL_EDIT.click(editDescription);
@@ -72,7 +73,16 @@ function addDescription(e) {
     var Ds = 'Ds' + catalogo.substring(1, catalogo.lenght);
 
     if (descripcion === '') {
-        alert("No deje el campo vacio, no sea wey");
+        swal({
+            type: "error",
+            title: '¡Error!',
+            text: 'Todos los campos son obligatorios',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            return false;
+        });
         return false;
     }
 
@@ -118,7 +128,16 @@ function deleteDataCatalog() {
 
     }).done(function (res) {
         if (res === 'true') {
-            alert('No se puede eliminar, otra tabla esta usando en dato');
+            swal({
+                type: "error",
+                title: '¡Error!',
+                text: 'No se puede eliminar, otra tabla esta usando en dato',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                return false;
+            });
         } else {
             const confirm_ = confirm('Estas seguro que deseas eliminar el dato');
 
@@ -162,7 +181,16 @@ function editDescription(e) {
     if (confirm_) {
 
         if (descripcion === '') {
-            alert("No deje el campo vacio, no sea wey");
+            swal({
+                type: "error",
+                title: '¡Error!',
+                text: 'Todos los campos son obligatorios',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                return false;
+            });
             return false;
         }
 

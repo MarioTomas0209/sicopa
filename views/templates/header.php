@@ -38,28 +38,31 @@
                             <a class="nav-link" href="pacientes">Pacientes</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="">|</a>
-                        </li>
+                        <?php if (isset($_SESSION['is_login'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">|</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="catalogos">Catalogos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="datos-personales">Datos Personales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="usuarios">Usuarios</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="catalogos">Catalogos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="datos-personales">Datos Personales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="usuarios">Usuarios</a>
+                            </li>
+                        <?php } ?>
+                        
                     </ul>
 
                     <div class="d-flex gap-4">
                         <div class="dropdown">
                             <?php
-                            if (isset($_SESSION['usuario'])) {
+                            if (isset($_SESSION['is_login'])) {
                                 echo '
                                 <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
-                                    . $_SESSION["nombre"] . ' ' . $_SESSION["apellidos"] . '
+                                    . $_SESSION["nombre"] . ' ' . $_SESSION["apellido"] . '
                                 </a>
                                 <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
                                     <li><a class="dropdown-item" href="salir">Salir</a></li>
@@ -67,15 +70,7 @@
                             
                                 ';
                             } else {
-                                echo '
-                                <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Iniciar sesión
-                                </a>
-                                <ul class="dropdown-menu espacio" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" href="login/paciente">Paciente</a></li>
-                                    <li><a class="dropdown-item" href="login/doctor">Doctor</a></li>
-                                </ul>
-                                ';
+                                echo '<a class="nav-link" href="login">Iniciar sesión</a>';
                             }
                             ?>
                         </div>

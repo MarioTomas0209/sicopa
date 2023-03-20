@@ -1,7 +1,6 @@
 // Variables declaration
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-const table = document.querySelector('#table');
 const form = document.querySelector('#login_form');
 // End of variables declaration
 
@@ -13,7 +12,7 @@ form.addEventListener('submit', function (e) {
     var xhr = new XMLHttpRequest();
 
     // Set up request
-    xhr.open('POST', '../controllers/login.controller.php');
+    xhr.open('POST', 'controllers/login.controller.php');
 
     // Set content type header
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -44,7 +43,6 @@ form.addEventListener('submit', function (e) {
 
     // Create data object to send
     var data = {
-        table: table.value,
         email: email.value,
         password: password.value
     };

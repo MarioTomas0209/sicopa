@@ -42,7 +42,7 @@ setFecMax();
 
 /** --------------- Logic validate curp Repeat ----------------  */
 function repeatCURP() {
-    if ($('#nuevo').text() == 'Grabar') {
+    if ($('#nuevo').text().trim() == 'Grabar') {
 
         if (($('#curp').val()).length == 18) {
 
@@ -113,7 +113,7 @@ function repeatCURP() {
                             // Editar
                             showData(data.CvPerson);
                             clearErrors();
-                            $('#nuevo').text('Guardar');
+                            $('#nuevo').html('<i class="bi bi-check-circle"></i> Guardar');
                             $('.componentes').removeClass('errors');
                             $('#' + data.CvPerson).addClass('seleccionada');
                             $('#curp').prop('disabled', true);
@@ -136,18 +136,31 @@ function repeatCURP() {
 /** ------------- Logic Add New Person --------------  */
 function addNewPerson() {
 
-    if ($('#nuevo').text() == 'Nuevo') {
+    if ($('#nuevo').text().trim() == 'Nuevo') {
 
         enableComponents(true);
         clearComponents();
-        $('#nuevo').css('background-color', 'green').text('Grabar');
+        $('#nuevo').css('background-color', 'green').html('<i class="bi bi-check-circle"></i> Grabar');
         $('.filasTablita').removeClass('seleccionada');
         $('#eliminar').prop('disabled', true);
         $('#modificar').prop('disabled', true);
 
-    } else if ($('#nuevo').text() == 'Grabar') {
+    } else if ($('#nuevo').text().trim() == 'Grabar') {
 
         let data = getData();
+
+        if (!data) {
+            swal({
+                type: "error",
+                title: '¡Error!',
+                text: 'Todos los campos son obligatorios',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                return false;
+            });
+        }
 
         if (data) {
             data.action = 'add';
@@ -162,14 +175,14 @@ function addNewPerson() {
                 enableComponents(false);
                 clearComponents();
                 getDataTable();
+                alert('Agregado con éxito');
             }).fail(function () {
                 alert('ERROR');
             });
 
         }
 
-    } else if ($('#nuevo').text() == 'Guardar') {
-
+    } else if ($('#nuevo').text().trim() == 'Guardar') {
 
         swal({
             type: "warning",
@@ -184,6 +197,19 @@ function addNewPerson() {
 
                 let data = getData();
 
+                if (!data) {
+                    swal({
+                        type: "error",
+                        title: '¡Error!',
+                        text: 'Todos los campos son obligatorios',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        return false;
+                    });
+                }
+
                 if (data) {
                     data.action = 'edit';
                     data.CvPerson = $('.seleccionada').attr('id');
@@ -195,8 +221,8 @@ function addNewPerson() {
                         data: data
 
                     }).done(function (result) {
-                        cancelar();
                         getDataTable();
+                        cancelar();
                     }).fail(function () {
                         alert('ERROR');
                     });
@@ -258,32 +284,30 @@ function getData() {
 
 function validateData(data) {
 
-    let errors = [];
-
     if (data.TipPerson == 0) {
-        errors.push('TipPersonError');
+        return false;
     }
 
     if (data.Curp == '' || data.Curp.length < 18) {
-        errors.push('CurpError');
+        return false;
     }
 
     if (data.Rfc != '') {
         if (data.Rfc.length < 13) {
-            errors.push('RfcError');
+            return false;
         }
     }
 
     if (data.Name == 0) {
-        errors.push('NombreError');
+        return false;
     }
 
     if (data.LastName == 0) {
-        errors.push('ApePatError');
+        return false;
     }
 
     if (data.MotherLastName == 0) {
-        errors.push('ApeMatError')
+        return false;
     }
 
     let now = new Date();
@@ -291,55 +315,47 @@ function validateData(data) {
     let year = new_date.getFullYear();
 
     if (data.Date == '' || year < 1950 || now < new_date) {
-        errors.push('DateError');
+        return false;
     }
 
     if (data.Gender == 0) {
-        errors.push('GeneroError');
+        return false;
     }
 
     if (data.Phone == '') {
-        errors.push('TelefonoError');
+        return false;
     }
 
     if (data.Matricula == '') {
-        errors.push('MatriculaError');
+        return false;
     }
 
     if (data.Email == '' || validateEmail(data.Email)) {
-        errors.push('EmailError');
+        alert('Email invalido');
+        return false;
     }
 
     if (data.Street == 0) {
-        errors.push('CalleError');
+        return false;
     }
 
     if (data.Suburb == 0) {
-        errors.push('ColoniaError');
+        return false;
     }
 
     if (data.Municipality == 0) {
-        errors.push('MunicipioError');
+        return false;
     }
 
     if (data.State == 0) {
-        errors.push('EstadoError');
+        return false;
     }
 
     if (data.PostalCode == '') {
-        errors.push('CpError');
+        return false;
     }
 
-    if (errors.length == 0) {
-        clearErrors();
-        $('.componentes').removeClass('errors');
-
-        return data;
-    } else {
-        errors_msg(errors);
-        return 0;
-    }
-
+    return data;
 }
 /** ----------- End Logic Add New Person ------------  */
 
@@ -371,7 +387,7 @@ function deletePerson() {
             swal({
                 type: "warning",
                 title: '¿Estas seguro?',
-                text: 'Se eliminara a ' + $($('#' + id).children()[0]).text() + ' ' + $($('#' + id).children()[1]).text(),
+                text: 'Se eliminara a ' + $($('#' + id).children()[0]).text().trim() + ' ' + $($('#' + id).children()[1]).text().trim(),
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -408,7 +424,7 @@ function deletePerson() {
 
 /** --------------- Logic Edit a person in table mPersona ----------------  */
 function editPerson() {
-    $('#nuevo').text('Guardar').css('background-color', 'green');
+    $('#nuevo').html('<i class="bi bi-check-circle"></i> Guardar').css('background-color', 'green');
     enableComponents(true);
     $('#curp').prop('disabled', true);
     $('#modificar').prop('disabled', true);
@@ -490,6 +506,7 @@ function setData(data) {
 function clearComponents() {
     $('input').val('');
     $('select').val('0');
+    $('#nuevo').html('<i class="bi bi-plus-lg"></i> Nuevo');
 }
 /** ------------- End Clear Components --------------  */
 

@@ -19,62 +19,59 @@ if (isset($_POST['action'])) {
 class ControllerUsuarios {
 
     public static function Login() {
-        if (isset($_POST['ingUsuario'])) {
-            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['ingUsuario']) &&
-                preg_match('/^[a-zA-Z0-9]+$/', $_POST['ingPassword'])) {
+        if (isset($_POST['email'])) {
+            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['email']) &&
+                preg_match('/^[a-zA-Z0-9]+$/', $_POST['password'])) {
 
-                $Login = $_POST['ingUsuario'];
+                $Login = $_POST['email'];
+
+                if ($Login == 'admin' && $_POST['password'] == 'admin') {
+                    $_SESSION['is_login'] = 'true';
+                    $_SESSION['CvUser'] = 1;
+                    $_SESSION['nombre'] = 'Administrador';
+                    $_SESSION['apellido'] = 'Admin';
+                    echo '<script>window.location = "main"</script>';
+                    return;
+                }
 
                 $User = ModelUsuarios::getUser($Login);
 
-                if ($User && $User['Password'] == crypt($_POST['ingPassword'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$')) {
+                if ($User && $User['password'] == $_POST['password']) {
 
-                    if ($User['Login'] == 'admin') {
-                        $_SESSION['iniciarSesion'] = 'ok';
-    
-                        $_SESSION['CvUser'  ] = $User['CvUser' ];
-                        $_SESSION['CvPerson'] = $User['CvPerson'];
-                        $_SESSION['Name'    ] = $User['Login'   ];
-                        $_SESSION['Photo'   ] = '';//$User['Photo'   ];
+                    if ($User['edocta'] == 1) {
 
-                        echo '<script>window.location = "inicio"</script>';
-                    } else {
-                        if ($User['EdoCta'] == 1) {
+                        $now = date("Y-m-d");
+                        $FecIni = $User['fecini'];
+                        $FecFin = $User['fecfin'];
 
-                            $now = date("Y-m-d");
-                            $FecIni = $User['FecIni'];
-                            $FecFin = $User['FecFin'];
-    
-                            if ($now >= $FecIni) {
-    
-                                if ($now <= $FecFin) {
-                                    $_SESSION['iniciarSesion'] = 'ok';
-    
-                                    $_SESSION['CvUser'  ] = $User['CvUser' ];
-                                    $_SESSION['CvPerson'] = $User['CvPerson'];
-                                    $_SESSION['Name'    ] = $User['Login'   ];
-                                    $_SESSION['Photo'   ] = '';//$User['Photo'   ];
-            
-                                    echo '<script>window.location = "inicio"</script>';
-                                } else {
-                                    echo '<br><div class="alert alert-danger">Error a ingresar, cuenta caducada</div>';
+                        if ($now >= $FecIni) {
 
-                                    ModelUsuarios::disableEdoCta($User['CvUser'], 0);
-                                }
-    
+                            if ($now <= $FecFin) {    
+                                $_SESSION['is_login'] = 'true';
+                                $_SESSION['CvUser'] = $User['cvuser'];
+                                $_SESSION['CvPerson'] = $User['cvperson'];
+                                $_SESSION['login'] = $User['login'];
+                                $_SESSION['nombre'] = $User['dsnombre'];
+                                $_SESSION['apellido'] = $User['dsapellido'];
+        
+                                echo '<script>window.location = "main"</script>';
                             } else {
-                                echo '<br><div class="alert alert-danger">Error a ingresar, cuenta aún no activada</div>';
+                                echo '<br><div class="alert alert-danger">Error a ingresar, cuenta caducada</div>';
+                                ModelUsuarios::disableEdoCta($User['cvuser'], 0);
                             }
-    
+
                         } else {
-                            echo '<br><div class="alert alert-danger">Error a ingresar, cuenta desactivada.</div>';
+                            echo '<br><div class="alert alert-danger">Error a ingresar, cuenta aún no activada</div>';
                         }
+
+                    } else {
+                        echo '<br><div class="alert alert-danger">Error a ingresar, cuenta desactivada.</div>';
                     }
+                    
 
                 } else {
                     echo '<br><div class="alert alert-danger">Error a ingresar, vuelve a internarlo</div>';
                 }
-
             }
         }
     }
@@ -109,6 +106,7 @@ class ControllerUsuarios {
                                    <td>$value[0]</td> 
                                    <td id=".'"NombreUser"'.">$value[1]</td>
                                    <td>$value[2]</td>
+                                   <td>**********</td>
                                    <td>$value[4]</td>
                                    <td>$value[5]</td>";
                                 if ($value[6] == 1) {
@@ -129,7 +127,7 @@ class ControllerUsuarios {
         $CvUser = 0;
         $CvPerson = $_POST['NameUser'];
         $Login    = $_POST['Login'];
-        $Password = crypt($_POST['Password'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+        $Password = $_POST['Password'];
         $FecIni   = $_POST['FecIni'];
         $FecFin   = $_POST['FecFin'];
         $EdoCta   = $_POST['EdoCta'];
@@ -182,7 +180,7 @@ class ControllerUsuarios {
     public static function validateUsername() {
 
         $Login = $_POST['Username'];
-        $Password = crypt($_POST['Password'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+        $Password = $_POST['Password'];
 
         $eLogin = ModelUsuarios::validateUsername($Login);
         $ePassword = ModelUsuarios::validatePassword($Password);

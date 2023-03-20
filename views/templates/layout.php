@@ -38,17 +38,17 @@
             $ruta == "catalogos" ||
             $ruta == "datos-personales" ||
             $ruta == "salir"
+
         ) {
             include 'header.php';
             include "views/modules/{$ruta}.php";
         }
 
+        if ($ruta == 'login') {
+            include "views/modules/{$ruta}.php";
+        }
         
         $ruta = explode('/', $ruta);
-
-        if ($ruta[0] == 'login' || $ruta[0] == 'registro' || $ruta[0] == 'eliminar') {
-            include "views/modules/{$ruta[0]}.php";
-        }
         
     } else {
         include 'header.php';

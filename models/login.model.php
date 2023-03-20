@@ -14,12 +14,15 @@ class LoginModel {
         return $stmt -> fetchAll();
     }
 
-    /** Get user, can be patient or doctor */
-    public static function getUser($table, $email, $password) {
-        $sql = "SELECT * FROM $table WHERE email = :email AND password = :password";
+    
+    public static function getUser($email, $password) {
+        $sql = "SELECT u.login, p.cvperson, n.dsnombre, a.dsapellido 
+                FROM users u, mpersona p, cnombre n, capellido a
+                WHERE login = :login AND password = :password 
+                AND p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat";
 
         $stmt = Conexion::conectar() -> prepare($sql);
-        $stmt -> bindParam(":email", $email, PDO::PARAM_STR);
+        $stmt -> bindParam(":login", $email, PDO::PARAM_STR);
         $stmt -> bindParam(":password", $password, PDO::PARAM_STR);
         $stmt -> execute();
 

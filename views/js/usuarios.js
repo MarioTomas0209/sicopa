@@ -1,23 +1,26 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $('#nuevo').click(addNewUser);
+    $('#save_new_user').click(saveModalNewUser);
     $('#eliminar').click(eliminar);
     $('#modificar').click(modificar);
     $('#cancelar').click(cancelar);
 
-    $('#eye').mousedown(function() {
+    $('#eye').mousedown(e => {
+        e.preventDefault();
         $('#Password').prop('type', 'text');
     });
 
-    $('#eye').mouseup(function() {
+    $('#eye').mouseup(e => {
+        e.preventDefault();
         $('#Password').prop('type', 'password');
     });
 
-    $('#FecIni').on('change', function() {
+    $('#FecIni').on('change', function () {
         miniFec($(this));
     });
 
-    $('#Login').bind('keypress', function(event) {
+    $('#Login').bind('keypress', function (event) {
         validateInputLogin(event);
     });
 
@@ -25,193 +28,125 @@ $(document).ready(function() {
 
 /** --------------- Logic Add New User ----------------  */
 function addNewUser() {
-    if ($('#nuevo').text().trim() == 'Nuevo') {
-        cancelar();
-        setFecIni_FecFin();
-        clearComponents();
-        enableComponents(true);
-        setDateToday();
-        $('#nuevo').text('Grabar').css('background-color', 'green');
-        $('#cancelar').prop('disabled', false);
-        $('#Password').attr('placeholder', 'Ingrese una Contraseña');
-        $('#EdoCta').prop('checked', true);
+    enableComponents(true);
+    cancelar();
+    setFecIni_FecFin();
+    setDateToday();
 
-        $('#eliminar').prop('disabled', true);
-        $('#modificar').prop('disabled', true);
-        
-    } else if ($('#nuevo').text() == 'Grabar') {
+    $('#eliminar, #modificar, #cancelar').prop('disabled', true);
+    $('#EdoCta').prop('checked', true);
 
-        var data = getData();
+    $('#add_data_user').text('Insertar datos');
+}
 
-        $.ajax({
+function saveModalNewUser(e) {
+    e.preventDefault();
 
-            type: 'POST', 
-            url: 'controllers/usuarios.controller.php',
-            data: {
-                action:'validateUsername', 
-                Username: data.Login, 
-                Password: data.Password
-            }
-    
-        }).done(function(res) {
-
-            if (res == 'username') {
-
-                swal({
-                    type: "error",
-                    title: '¡Error!',
-                    text: 'Ya existe un registro con ese usuario',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    $('#Login').focus();
-                });
-                
-            } else if (res == 'password') {
-
-                swal({
-                    type: "error",
-                    title: '¡Error!',
-                    text: 'Ya existe una registro con esa contraseña',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    $('#Password').focus();
-                });
-
-            } else if (res == 'none'){
-                
-                if (data) { 
-                    data.action = 'addNewUser';
-        
-                    $.ajax({
-        
-                        type: 'POST', 
-                        url: 'controllers/usuarios.controller.php',
-                        data: data
-        
-                    }).done(function(res) {
-                        getDataTable();
-                        clearComponents();
-                        enableComponents(false);
-                    }).fail(function() {
-        
-                    });
-        
-                }
-
-            }
-
-        });
-
-    } else if ($('#nuevo').text() == 'Guardar') {
-
-        swal({
-            type: "warning",
-            title: '¿Seguro que desea guardar los cambios?',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-        }).then((result) => {
-                
-            if (result.value) {
-
-                let data = getData();
-
-                $.ajax({
-
-                    type: 'POST', 
-                    url: 'controllers/usuarios.controller.php',
-                    data: {
-                        action:'validateUsername', 
-                        e: $('.seleccionada').attr('id'),
-                        Username: data.Login, 
-                        Password: data.Password
-                    }
-    
-                }).done(function(res) {
-
-                    if (res == 'username') {
-
-                        swal({
-                            type: "error",
-                            title: '¡Error!',
-                            text: 'Ya existe un registro con ese usuario',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Aceptar',
-                        }).then((result) => {
-                            $('#Login').focus();
-                        });
-                
-                    } else if (res == 'password') {
-
-                        swal({
-                            type: "error",
-                            title: '¡Error!',
-                            text: 'Ya existe una registro con esa contraseña',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Aceptar',
-                        }).then((result) => {
-                            $('#Password').focus();
-                        });
-
-                    } else if (res == 'none'){
-                
-                        if (data) {
-                            data.action = 'edit';
-                            data.CvUser = $('.seleccionada').attr('id');
-        
-                            $.ajax({
-                                
-                                type: 'POST',
-                                url: 'controllers/usuarios.controller.php',
-                                data: data
-                
-                            }).done(function(result) {
-                                cancelar();
-                                getDataTable();
-                                $('#Password').attr('placeholder', 'Ingrese una Contraseña');
-                            }).fail(function() {
-                                alert('ERROR');
-                            });
-                            
-                        }
-
-                    }
-
-                });
-                
-                
-            } else {
-                cancelar();
-            }
-                
-        });
-
+    if ($('#add_data_user').text() === 'Insertar datos') {
+        saveData();
+    } else {
+        saveEdit();
     }
 
 }
 
+function saveData() {
+    var data = getData();
+
+    if (!data) {
+        swal({
+            type: "error",
+            title: '¡Error!',
+            text: 'Todos los campos son obligatorios',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            return false;
+        });
+        return false;
+    }
+
+    $.ajax({
+
+        type: 'POST',
+        url: 'controllers/usuarios.controller.php',
+        data: {
+            action: 'validateUsername',
+            Username: data.Login,
+            Password: data.Password
+        }
+
+    }).done(function (res) {
+
+        if (res == 'username') {
+
+            swal({
+                type: "error",
+                title: '¡Error!',
+                text: 'Ya existe un registro con ese usuario',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                $('#Login').focus();
+            });
+
+        } else if (res == 'password') {
+
+            swal({
+                type: "error",
+                title: '¡Error!',
+                text: 'Ya existe una registro con esa contraseña',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                $('#Password').focus();
+            });
+
+        } else if (res == 'none') {
+
+            if (data) {
+                data.action = 'addNewUser';
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: 'controllers/usuarios.controller.php',
+                    data: data
+
+                }).done(function (res) {
+                    getDataTable();
+                    clearComponents();
+                    enableComponents(false);
+                    $('#add_user').modal('hide');
+                }).fail(function () {
+
+                });
+
+            }
+
+        }
+
+    });
+}
+
 function getData() {
 
-    const NameUser  = $( '#nameUser' ).val();
+    const NameUser = $('#nameUser').val();
 
-    const Login     = $( '#Login'    ).val();
-    const Password  = $( '#Password' ).val();
-    const FecIni    = $( '#FecIni'   ).val();
-    const FecFin    = $( '#FecFin'   ).val();
-    const EdoCta    = $( '#EdoCta'   ).is(':checked');
+    const Login = $('#Login').val();
+    const Password = $('#Password').val();
+    const FecIni = $('#FecIni').val();
+    const FecFin = $('#FecFin').val();
+    const EdoCta = $('#EdoCta').is(':checked');
 
     const data = {
         "NameUser": NameUser,
-        "Login": Login, 
-        "Password": Password, 
-        "FecIni": FecIni, 
+        "Login": Login,
+        "Password": Password,
+        "FecIni": FecIni,
         "FecFin": FecFin,
         "EdoCta": EdoCta
     };
@@ -221,30 +156,19 @@ function getData() {
 
 function validateData(data) {
 
-    let errors = [];
-    
-    if (data.NameUser == 0) {
-        errors.push('NombreUsuarioError');
+    if (data.NameUser === '0') {
+        return false;
     }
 
-    if (data.Login == '') {
-        errors.push('LoginUsuarioError');
+    if (data.Login === '') {
+        return false;
     }
 
-    if (data.Password == '' && $('#nuevo').text() == 'Grabar') {
-        errors.push('PasswordUsuarioError');
-    } 
-
-    if (errors.length == 0) {
-        clearErrors();
-        $('.componentes').removeClass('errors');
-
-        return data;
-    } else {
-        errors_msg(errors);
-        return 0;
+    if (data.Password === '') {
+        return false;
     }
 
+    return data;
 }
 /** ------------- End Logic Add New User --------------  */
 
@@ -262,26 +186,26 @@ function eliminar() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Aceptar',
     }).then((result) => {
-            
+
         if (result.value) {
-        
+
             $.ajax({
 
                 type: 'POST',
                 url: 'controllers/usuarios.controller.php',
-                data: {action: 'delete', id: filaSeleccionada}
-        
+                data: { action: 'delete', id: filaSeleccionada }
+
             }).done(function (result) {
                 getDataTable();
             }).fail(function () {
                 alert('ERROR');
             });
-            
+
             enableComponents(false);
             clearComponents();
 
         }
-            
+
     });
 }
 /** ----------------- End Logic Eliminar ------------------  */
@@ -289,10 +213,105 @@ function eliminar() {
 
 /** ------------------- Logic Modificar --------------------  */
 function modificar() {
-    $('#nuevo').text('Guardar').css('background-color','green');
+    $('#add_data_user').text('Editar datos');
+    $('#add_user').modal('show');
     enableComponents(true);
-    $('#modificar').prop('disabled', true);
-    $('#eliminar').prop('disabled', true);
+}
+
+function saveEdit() {
+    swal({
+        type: "warning",
+        title: '¿Seguro que desea guardar los cambios?',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+    }).then((result) => {
+
+        if (result.value) {
+
+            let data = getData();
+
+            if (!data) {
+                swal({
+                    type: "error",
+                    title: '¡Error!',
+                    text: 'Todos los campos son obligatorios',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    return false;
+                });
+                return false;
+            }
+
+            $.ajax({
+
+                type: 'POST',
+                url: 'controllers/usuarios.controller.php',
+                data: {
+                    action: 'validateUsername',
+                    e: $('.seleccionada').attr('id'),
+                    Username: data.Login,
+                    Password: data.Password
+                }
+
+            }).done(function (res) {
+
+                if (res == 'username') {
+
+                    swal({
+                        type: "error",
+                        title: '¡Error!',
+                        text: 'Ya existe un registro con ese usuario',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Aceptar',
+                    }).then((result) => {
+                        $('#Login').focus();
+                    });
+
+                } else if (res == 'password') {
+
+                    swal({
+                        type: "error",
+                        title: '¡Error!',
+                        text: 'Ya existe una registro con esa contraseña',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Aceptar',
+                    }).then((result) => {
+                        $('#Password').focus();
+                    });
+
+                } else if (res == 'none') {
+
+                    if (data) {
+                        data.action = 'edit';
+                        data.CvUser = $('.seleccionada').attr('id');
+
+                        $.ajax({
+
+                            type: 'POST',
+                            url: 'controllers/usuarios.controller.php',
+                            data: data
+
+                        }).done(function (result) {
+                            $('#add_user').modal('hide');
+                            cancelar();
+                            getDataTable();
+                        }).fail(function () {
+                            alert('ERROR');
+                        });
+
+                    }
+
+                }
+
+            });
+        }
+    });
 }
 /** ----------------- End Logic Modificar ------------------  */
 
@@ -300,12 +319,8 @@ function modificar() {
 /** ----------------- Logic Cancelar ------------------  */
 function cancelar() {
     clearComponents();
-    enableComponents(false);
-
-    $('#cancelar').prop('disabled', true);
-    $('#nuevo').text('Nuevo').css('background-color', '#3c8dbc');
     $('.filasTablita').removeClass('seleccionada');
-    $('#Password').attr('placeholder', 'Ingrese una Contraseña');
+    $('#eliminar, #modificar, #cancelar').prop('disabled', true);
 }
 /** --------------- End Logic Cancelar ----------------  */
 
@@ -317,8 +332,6 @@ function clearComponents() {
     $('#EdoCta').prop('checked', false);
 
     clearErrors();
-    $('.v-er').removeClass('errors');
-    $('#nuevo').text('Nuevo').css('background-color', '#3c8dbc');
 }
 /** ------------- End Clear Components --------------  */
 
@@ -331,7 +344,6 @@ function enableComponents(value) {
     $('button').prop('disabled', !value);
 
     $('#nuevo').prop('disabled', false);
-    $('#salir').prop('disabled', false);
 }
 /** ----------- END Enable & Disable Componets ------------  */
 
@@ -367,10 +379,10 @@ function clearErrors() {
 
 /** ----------------- Logic Set Date Today ------------------  */
 function setDateToday() {
-    Date.prototype.toDateInputValue = (function() {
+    Date.prototype.toDateInputValue = (function () {
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0,10);
+        return local.toJSON().slice(0, 10);
     });
     document.getElementById('FecIni').value = new Date().toDateInputValue();
 
@@ -379,18 +391,18 @@ function setDateToday() {
 function sumaFecha(d, fecha) {
 
     var Fecha = new Date();
-    var sFecha = fecha || (Fecha.getDate() + "/" + (Fecha.getMonth() +1) + "/" + Fecha.getFullYear());
+    var sFecha = fecha || (Fecha.getDate() + "/" + (Fecha.getMonth() + 1) + "/" + Fecha.getFullYear());
     var sep = sFecha.indexOf('/') != -1 ? '/' : '-';
     var aFecha = sFecha.split(sep);
-    var fecha = aFecha[0]+'/'+aFecha[1]+'/'+aFecha[2];
-    fecha= new Date(fecha);
-    fecha.setDate(fecha.getDate()+parseInt(d));
-    var anno=fecha.getFullYear();
-    var mes= fecha.getMonth()+1;
-    var dia= fecha.getDate();
+    var fecha = aFecha[0] + '/' + aFecha[1] + '/' + aFecha[2];
+    fecha = new Date(fecha);
+    fecha.setDate(fecha.getDate() + parseInt(d));
+    var anno = fecha.getFullYear();
+    var mes = fecha.getMonth() + 1;
+    var dia = fecha.getDate();
     mes = (mes < 10) ? ("0" + mes) : mes;
     dia = (dia < 10) ? ("0" + dia) : dia;
-    var fechaFinal = anno+sep+mes+sep+dia;
+    var fechaFinal = anno + sep + mes + sep + dia;
 
     return fechaFinal;
 }
@@ -405,7 +417,7 @@ function getDataTable() {
 
         type: 'POST',
         url: 'controllers/usuarios.controller.php',
-        data: {action: 'getUsers'}
+        data: { action: 'getUsers' }
 
     }).done(function (result) {
         $('#UsersTable').html(result);
@@ -420,60 +432,49 @@ function getDataTable() {
 
 /** ------------- Select Row in table Users --------------  */
 function selectRow(id_fila) {
+    clearErrors();
+    showData(id_fila);
 
-    if (id_fila == 1) {
-        cancelar();
-    } else {
-        clearErrors();
-        showData(id_fila);
+    $('.filasTablita').removeClass('seleccionada');
+    $('#' + id_fila).addClass('seleccionada');
 
-        $('.filasTablita').removeClass('seleccionada');
-        $('#' + id_fila).addClass('seleccionada');
-        
-        $('#nuevo').text('Nuevo').css('background-color', '#3c8dbc');
+    enableComponents(false);
 
-        enableComponents(false);
-        
-        $('#eliminar').prop('disabled', false);
-        $('#modificar').prop('disabled', false);
-        $('#cancelar').prop('disabled', false);
-
-        $('#Password').attr('placeholder', 'Ingrese la nueva contraseña').val('');
-    }
-
+    $('#eliminar').prop('disabled', false);
+    $('#modificar').prop('disabled', false);
+    $('#cancelar').prop('disabled', false);
 }
 /** ------------- End Select Row in table Users --------------  */
 /** ------------- Show Data in Components (Inputs, Selects) --------------  */
 function showData(id_fila) {
-
     $.ajax({
 
         type: 'POST',
         url: 'controllers/usuarios.controller.php',
-        data: {action: 'getDataUser', id: id_fila}
+        data: { action: 'getDataUser', id: id_fila }
 
     }).done(function (result) {
         setData(JSON.parse(result));
     }).fail(function () {
         alert('ERROR');
     });
-    
+
 }
 function setData(data) {
-    $( '#nameUser' ).val( data.CvPerson );
-    $( '#Login'    ).val( data.Login    );
-    // $( '#Password' ).val( data.Password );
-    $( '#FecIni'   ).val( data.FecIni   );
-    $( '#FecFin'   ).val( data.FecFin   );
+    $('#nameUser').val(data.CvPerson);
+    $('#Login').val(data.Login);
+    $('#Password').val(data.Password);
+    $('#FecIni').val(data.FecIni);
+    $('#FecFin').val(data.FecFin);
 
     if (data.EdoCta == 1) {
         $('#EdoCta').prop('checked', true);
     } else {
         $('#EdoCta').prop('checked', false);
     }
-    
+
     let now = new Date();
-    now.setHours(0,0,0,0);
+    now.setHours(0, 0, 0, 0);
     now.setDate(now.getDate());
 
     let year = now.getFullYear();
@@ -489,11 +490,11 @@ function setData(data) {
 
     // ---
     let FecFini = new Date(data.FecIni);
-    FecFini.setHours(0,0,0,0);
+    FecFini.setHours(0, 0, 0, 0);
     FecFini.setDate(FecFini.getDate() + 1);
 
     let yearr = FecFini.getFullYear();
-    let monthh= FecFini.getMonth() + 1;
+    let monthh = FecFini.getMonth() + 1;
     let dayy = FecFini.getDate();
 
     monthh = (monthh < 10) ? ("0" + monthh) : monthh;
@@ -534,7 +535,7 @@ function miniFec(FecIni) {
 }
 
 function validateInputLogin(event) {
-    var regex = new RegExp("^[a-zA-Z0-9]+$"); 
+    var regex = new RegExp("^[a-zA-Z0-9]+$");
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
     if (!regex.test(key)) {
         event.preventDefault();
