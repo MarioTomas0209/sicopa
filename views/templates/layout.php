@@ -31,12 +31,14 @@
         $ruta = $_GET['ruta'];
         
         if (
+            $ruta == "main" ||
             $ruta == "citas" ||
             $ruta == "pacientes" ||
-            $ruta == "usuarios" ||
-            $ruta == "main" ||
             $ruta == "catalogos" ||
             $ruta == "datos-personales" ||
+            $ruta == "usuarios" ||
+            $ruta == "password" ||
+            $ruta == "seguridad" ||
             $ruta == "salir"
 
         ) {

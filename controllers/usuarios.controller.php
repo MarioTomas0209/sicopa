@@ -56,16 +56,16 @@ class ControllerUsuarios {
         
                                 echo '<script>window.location = "main"</script>';
                             } else {
-                                echo '<br><div class="alert alert-danger">Error a ingresar, cuenta caducada</div>';
+                                echo '<br><div class="alert alert-danger">Cuenta vencida, contacte al administrador</div>';
                                 ModelUsuarios::disableEdoCta($User['cvuser'], 0);
                             }
 
                         } else {
-                            echo '<br><div class="alert alert-danger">Error a ingresar, cuenta aún no activada</div>';
+                            echo '<br><div class="alert alert-danger">Cuenta por activar, contacte al administrador</div>';
                         }
 
                     } else {
-                        echo '<br><div class="alert alert-danger">Error a ingresar, cuenta desactivada.</div>';
+                        echo '<br><div class="alert alert-danger">Cuenta desactivada, contacte al administrador</div>';
                     }
                     
 
