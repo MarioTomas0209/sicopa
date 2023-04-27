@@ -151,6 +151,29 @@
     text-decoration: underline;
     color: #000;
 }
+
+
+.users-access,
+.allow-users-access {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.2);
+}
+.allow-users-access {
+    margin-top: 20px;
+}
+
+.list-users li {
+    list-style: none;
+    padding: 5px;
+    cursor: pointer;
+
+    transition: all 150ms;
+}
+
+.list-users li:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
 @media only screen and (max-width: 768px){
     .side-image{
         border-radius: 10px 10px 0 0;

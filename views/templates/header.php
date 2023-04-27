@@ -34,9 +34,9 @@
                             <a class="nav-link" href="#">Citas</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="pacientes">Pacientes</a>
-                        </li>
+                        </li> -->
 
                         <?php if (isset($_SESSION['is_login'])) { ?>
                             <li class="nav-item">
@@ -53,10 +53,20 @@
                                 <a class="nav-link" href="usuarios">Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="password">Cambiar contraseña</a>
+                                <a class="nav-link" href="password">Contraseña</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="seguridad">Seguridad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="aplicaciones">Aplicaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="accesos">Accesos</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">|</a>
                             </li>
                         <?php } ?>
                         

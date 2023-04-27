@@ -39,6 +39,8 @@
             $ruta == "usuarios" ||
             $ruta == "password" ||
             $ruta == "seguridad" ||
+            $ruta == "aplicaciones" ||
+            $ruta == "accesos" ||
             $ruta == "salir"
 
         ) {
