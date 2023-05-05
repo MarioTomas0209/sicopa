@@ -73,19 +73,21 @@
                 <div class="without-access col-sm-4 border">
                     <h4 class="text-center border-bottom">Usuarios</h4>
                     <ul class="list-users">
-                        <li><span>Fernando Galicia</span></li>
-                        <li><span>Fernando Galicia</span></li>
-                        <li><span>Fernando Galicia</span></li>
-                        <li><span>Fernando Galicia</span></li>
-                        <li><span>Fernando Galicia</span></li>
+                        <?php 
+                        $users = ControllerUsuarios::getUsers();
+
+                        foreach ($users as $key => $value) {
+                            echo "<li><span>{$value['CvPerson']}</span></li>";
+                        }
+                        ?>
                     </ul>
                 </div>
 
-                <div class="access col-sm-2 row">
-                    <button type="button"><i class="bi bi-arrow-right"></i></button>
-                    <button type="button"><i class="bi bi-arrow-right"></i> &nbsp; <i class="bi bi-arrow-right"></i></button>
-                    <button type="button"><i class="bi bi-arrow-left"></i></button>
-                    <button type="button"><i class="bi bi-arrow-left"></i> &nbsp; <i class="bi bi-arrow-left"></i></button>
+                <div class="access col-sm-2 row g-1">
+                    <button class="arrows arrows-add" type="button"><i class="bi bi-arrow-right"></i></button>
+                    <button class="arrows arrows-add" type="button"><i class="bi bi-arrow-right"></i> &nbsp; <i class="bi bi-arrow-right"></i></button>
+                    <button class="arrows arrows-remove" type="button"><i class="bi bi-arrow-left"></i></button>
+                    <button class="arrows arrows-remove" type="button"><i class="bi bi-arrow-left"></i> &nbsp; <i class="bi bi-arrow-left"></i></button>
                 </div>
 
                 <div class="with-access col-sm-4 border">
@@ -113,11 +115,11 @@
                     </ul>
                 </div>
 
-                <div class="access col-sm-2 row">
-                    <button type="button"><i class="bi bi-caret-right-fill"></i></button>
-                    <button type="button"><i class="bi bi-caret-right-fill"></i><i class="bi bi-caret-right-fill"></i></button>
-                    <button type="button"><i class="bi bi-caret-left-fill"></i></button>
-                    <button type="button"><i class="bi bi-caret-left-fill"></i><i class="bi bi-caret-left-fill"></i></button>
+                <div class="access col-sm-2 row g-1">
+                    <button class="arrows arrows-add" type="button"><i class="bi bi-caret-right-fill"></i></button>
+                    <button class="arrows arrows-add" type="button"><i class="bi bi-caret-right-fill"></i><i class="bi bi-caret-right-fill"></i></button>
+                    <button class="arrows arrows-remove" type="button"><i class="bi bi-caret-left-fill"></i></button>
+                    <button class="arrows arrows-remove" type="button"><i class="bi bi-caret-left-fill"></i><i class="bi bi-caret-left-fill"></i></button>
                 </div>
 
                 <div class="with-access col-sm-4 border">

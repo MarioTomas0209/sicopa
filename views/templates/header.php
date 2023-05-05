@@ -56,9 +56,6 @@
                                 <a class="nav-link" href="password">Contraseña</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="seguridad">Seguridad</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="aplicaciones">Aplicaciones</a>
                             </li>
                             <li class="nav-item">

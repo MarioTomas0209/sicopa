@@ -77,7 +77,7 @@ class ControllerUsuarios {
     }
 
     public static function getPeople() {
-        return ModelUsuarios::getPeople();
+        return ModelUsuarios::getUsers();
     }
 
     public static function getUsers() {

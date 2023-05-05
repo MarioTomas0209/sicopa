@@ -1,27 +1,30 @@
 /* SESION HEADER */
-.sesion a{
+.sesion a {
     color: #0000008c;
 }
-.espacio{
+
+.espacio {
     letter-spacing: 1px;
 }
 
 
 /* Logo */
-.logo{
+.logo {
     color: #007bff;
     font-size: 2rem;
     font-weight: bold;
 }
 
 @media (min-width: 768px) {
+
     /* Buscador */
-    .buscador{
+    .buscador {
         display: flex;
         justify-content: space-between;
     }
+
     /* HEADER */
-    .sesion{
+    .sesion {
         width: 90%;
         display: flex;
         justify-content: space-between;
@@ -29,7 +32,7 @@
     }
 }
 
-.icono{
+.icono {
     font-size: 5rem;
     color: #007bff;
 }
@@ -37,7 +40,7 @@
 
 
 /* SITE */
-.header_site{
+.header_site {
     background-image: url('../img/site.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -45,7 +48,8 @@
     margin-bottom: 2rem;
     height: 410px;
 }
-.header_contenido{
+
+.header_contenido {
     background-color: rgb(0 0 0 / 50%);
     width: 100%;
     height: 100%;
@@ -58,24 +62,26 @@
 
 
 /* LOGIN */
-.wrapper{
+.wrapper {
     padding: 0 20px 0 20px;
 }
 
-.main{
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
-.card-login{
+
+.card-login {
     width: 900px;
     height: 590px;
     border-radius: 10px;
     background: #fff;
-    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
-.side-image{
+
+.side-image {
     background-image: url('../img/login-portada.jpg');
     background-position: center;
     background-size: cover;
@@ -83,7 +89,8 @@
     position: relative;
     border-radius: 10px 0;
 }
-.side-image2{
+
+.side-image2 {
     background-image: url('../img/doctor.jpg');
     background-position: center;
     background-size: cover;
@@ -91,44 +98,51 @@
     position: relative;
     border-radius: 10px 0;
 }
-.img-login{
+
+.img-login {
     width: 35px;
     position: absolute;
     top: 30px;
     left: 30px;
 }
-.text{
+
+.text {
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%, -50%);
 }
-.text a{
+
+.text a {
     color: #fff;
 }
-.right{
+
+.right {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
-.input-box{
+
+.input-box {
     width: 330px;
     box-sizing: border-box;
 }
-.input-box header{
+
+.input-box header {
     font-weight: bold;
     text-align: center;
     margin-bottom: 45px;
 }
-.input-field{
+
+.input-field {
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 0 10px;
 }
 
-.input-box .input-field label{
+.input-box .input-field label {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -136,18 +150,20 @@
     transition: .5s;
 }
 
-.signin{
+.signin {
     text-align: center;
     font-size: small;
-    margin-top: 25px; 
+    margin-top: 25px;
 }
-.signin span a{
+
+.signin span a {
     text-decoration: none;
     font-weight: bold;
     color: #000;
     transition: .5s;
 }
-.signin span a:hover{
+
+.signin span a:hover {
     text-decoration: underline;
     color: #000;
 }
@@ -155,9 +171,10 @@
 
 .users-access,
 .allow-users-access {
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
 }
+
 .allow-users-access {
     margin-top: 20px;
 }
@@ -171,29 +188,53 @@
 }
 
 .list-users li:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-@media only screen and (max-width: 768px){
-    .side-image{
+.arrows {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.arrows-add:active {
+    background-color: #eee;
+    border-color: #999;
+    box-shadow: inset 0 0 10px rgb(76, 231, 76);
+    transform: translateY(1px);
+}
+
+.arrows-remove:active {
+    background-color: #eee;
+    border-color: #999;
+    box-shadow: inset 0 0 10px rgb(255, 22, 22);
+    transform: translateY(1px);
+}
+
+@media only screen and (max-width: 768px) {
+    .side-image {
         border-radius: 10px 10px 0 0;
     }
-    .img-login{
+
+    .img-login {
         width: 35px;
         position: absolute;
         top: 20px;
         left: 47%;
     }
-    .text{
+
+    .text {
         position: absolute;
         top: 70%;
         text-align: center;
     }
-    .text a{
+
+    .text a {
         font-size: 17px;
 
     }
-    .card-login{
+
+    .card-login {
         max-width: 420px;
         width: 100%;
     }
@@ -201,10 +242,8 @@
 }
 
 /* footer */
-footer{
+footer {
     /* min-height: 30rem; */
     color: white;
     background-color: #03001C;
 }
-
-
