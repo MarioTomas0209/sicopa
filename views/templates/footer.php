@@ -1,7 +1,7 @@
 <footer class="mt-5 text-center text-lg-start">
   <div class="text-center p-3">
     <a class="logo navbar-brand" href="main">SICOPA</a>
-    <p class="mt-5">© 2023 Copyright: Todos los derechos reservados</p>
+    <p class="mt-5">© SICOPA 2023 Copyright: Todos los derechos reservados</p>
   </div>
 </footer>
 

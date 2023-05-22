@@ -220,4 +220,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* DATOS PERSONALES */
+
+
+.remind-notation .notation {
+    text-align: initial;
+    width: 66%;
+    margin: 0px auto;
+    font-size: 14px;
+}

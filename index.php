@@ -27,4 +27,4 @@ require_once 'models/access.model.php';
 require_once 'models/applications.model.php';
 
 
-include 'views/templates/layout.php'; 
+require_once 'views/templates/layout.php'; 

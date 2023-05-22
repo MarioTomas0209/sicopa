@@ -113,4 +113,14 @@ CREATE TABLE citas (
     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
     FOREIGN KEY (id_doctor) REFERENCES doctor(id_doctor)
 );
+
+CREATE TABLE IF NOT EXISTS maplicaciones( 
+    CvAplicacion VARCHAR(350) PRIMARY KEY NOT NULL,
+    DsAplicacion VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS maccesos(
+	CvUsuario INT NOT NULL,
+    CvAplicacion VARCHAR(20) NOT NULL
+);
 -- < ------------------------------------ end of SICOPA -------------------------------------------- > --

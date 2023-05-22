@@ -77,7 +77,7 @@ class ControllerUsuarios {
     }
 
     public static function getPeople() {
-        return ModelUsuarios::getUsers();
+        return ModelUsuarios::getPeople();
     }
 
     public static function getUsers() {
@@ -228,5 +228,23 @@ class ControllerUsuarios {
             }
 
         }
+    }
+
+    public static function getUsersSelected() {
+        $Users = ModelUsuarios::getUsersSelected();
+
+        foreach ($Users as $key => $User) {
+
+            if ($User['CvUser'] == 1) {
+                $Users[$key]['CvPerson'] = 'Administrador';
+                $Users[$key][1] = 'Administrador';
+            } else {
+                $NombreCompleto = ModelUsuarios::getPerson($User[1]);
+                $Users[$key]['CvPerson'] = $NombreCompleto[0] . ' ' . $NombreCompleto[1] . ' ' . $NombreCompleto[2];
+                $Users[$key][1] = $NombreCompleto[0] . ' ' . $NombreCompleto[1] . ' ' . $NombreCompleto[2];
+            }
+        }       
+
+        return $Users;
     }
 }

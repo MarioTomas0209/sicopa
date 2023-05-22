@@ -39,6 +39,13 @@ class ModelUsuarios {
 
         return $stmt -> fetchAll();
     }
+    
+    public static function getUsersSelected() {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM maccesos WHERE login NOT IN ('admin') ORDER BY CvUser ASC");
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+    }
 
     public static function getPerson($CvPerson) {
         $sql = "SELECT Nombre.DsNombre, ApePat.DsApellido 'DsApePat', ApeMat.DsApellido 'DsApeMat', TipPerson.DsTipPerson 
