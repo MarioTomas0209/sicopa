@@ -17,10 +17,13 @@ SELECT * FROM cCalle;
 SELECT * FROM mPersona;
 SELECT * FROM Users;
 SELECT * FROM maplicaciones;
-SELECT * FROM maccesos;
+SELECT * FROM maccesos;	
 
-SELECT * FROM maccesos WHERE CvUsuario = 3
+SELECT u.Login, a.CvAplicacion FROM maccesos a, users u WHERE a.CvUsuario = u.CvUser;
 
+DELETE FROM maccesos WHERE cvaplicacion = 'SIC10000' AND cvusuario = 2;
+
+SELECT * FROM maccesos ORDER BY cvaplicacion ASC;
 
 SELECT * FROM aplicaciones WHERE CvAplicacion LIKE '%0000';
 SELECT * FROM aplicaciones WHERE CvAplicacion LIKE 'SIC4%' LIMIT 18446744073709551615 OFFSET 1;

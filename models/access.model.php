@@ -26,7 +26,7 @@ class AccessModel {
     }
 
     public static function getAccessByUser($id_user) {
-        $sql = "SELECT * FROM maccesos WHERE CvUsuario = :cv_usuario";
+        $sql = "SELECT * FROM maccesos WHERE CvUsuario = :cv_usuario ORDER BY cvaplicacion ASC";
         
         $stmt = Conexion::conectar() -> prepare($sql);
         $stmt -> bindParam(":cv_usuario", $id_user, PDO::PARAM_STR);
@@ -41,6 +41,29 @@ class AccessModel {
         
         $stmt = Conexion::conectar() -> prepare($sql);
         $stmt -> bindParam(":cv_aplicacion", $cv_app, PDO::PARAM_STR);
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+        $stmt = null;
+    }
+
+    public static function searchAccess($iduser, $cv_app) {
+        $sql = "SELECT id_ FROM maccesos WHERE cvaplicacion = :cvaplicacion AND cvusuario = :cvusuario";
+        
+        $stmt = Conexion::conectar() -> prepare($sql);
+        $stmt -> bindParam(":cvaplicacion", $cv_app, PDO::PARAM_STR);
+        $stmt -> bindParam(":cvusuario", $iduser, PDO::PARAM_STR);
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+        $stmt = null;
+    }
+
+    public static function deleteAccess($id_) {
+        $sql = "DELETE FROM maccesos WHERE id_ = :id_";
+        
+        $stmt = Conexion::conectar() -> prepare($sql);
+        $stmt -> bindParam(":id_", $id_, PDO::PARAM_STR);
         $stmt -> execute();
 
         return $stmt -> fetch();

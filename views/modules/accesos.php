@@ -107,13 +107,13 @@
                         <?php
                         $data = ApplicationsController::getApplications();
 
-                        $add_pl = 'style="padding-left: 30px"> - '; // Add padding left to submodule
+                        $add_pl = 'style="font-weight: bold">';
 
                         foreach ($data as $key => $value) {
                             $key_code = $value[0];
                             $description = $value[1];
 
-                            echo "<li onclick='seleccionar3(this.id)' id='$key_code' " . ($key_code[4] != '0' ? $add_pl : '>') . "$description</li>";
+                            echo "<li onclick='seleccionar3(this.id)' id='$key_code' " . ($key_code[4] != '0' ?  '>' : $add_pl) . "$description</li>";
                         }
                         ?>
                     </ul>

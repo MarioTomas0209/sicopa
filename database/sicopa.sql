@@ -120,7 +120,8 @@ CREATE TABLE IF NOT EXISTS maplicaciones(
 );
 
 CREATE TABLE IF NOT EXISTS maccesos(
-	CvUsuario INT NOT NULL,
+	id_ INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	CvUsuario INT,
     CvAplicacion VARCHAR(20) NOT NULL
 );
 -- < ------------------------------------ end of SICOPA -------------------------------------------- > --

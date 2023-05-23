@@ -21,7 +21,7 @@ class ApplicationsModel {
      * Get all applications
      */
     public static function getApplications() {
-        $sql = "SELECT * FROM maplicaciones";
+        $sql = "SELECT * FROM maplicaciones ORDER BY cvaplicacion ASC";
 
         $stmt = Conexion::conectar() -> prepare($sql);
         $stmt -> execute();
