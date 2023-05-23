@@ -41,7 +41,7 @@ class ApplicationsController {
     public static function ajaxSearchModule() {
         $value = $_POST['data'];
 
-        $result = ApplicationsModel::getSubModules($value);
+        $result = ApplicationsModel::getModuleMain($value);
 
         if ($result) {
             echo 'exists';

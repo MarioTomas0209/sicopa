@@ -70,6 +70,16 @@ class ApplicationsModel {
         $stmt = null;
     }
 
+    public static function getModuleMain($main) {
+        $sql = "SELECT * FROM maplicaciones WHERE CvAplicacion LIKE '$main%'";
+        
+        $stmt = Conexion::conectar() -> prepare($sql);
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+        $stmt = null;
+    }
+
     /**
      * 
      */

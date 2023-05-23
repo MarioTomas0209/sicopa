@@ -183,7 +183,7 @@ function existsParent(value) {
         async: false,
         data: {
             action: 'search_module',
-            data: first_key
+            data: first_key + '0'
         }
     }).done(function (data) {
         if (data == 'exists') {

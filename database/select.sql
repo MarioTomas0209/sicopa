@@ -22,12 +22,13 @@ SELECT * FROM maccesos;
 SELECT u.Login, a.CvAplicacion FROM maccesos a, users u WHERE a.CvUsuario = u.CvUser;
 
 DELETE FROM maccesos WHERE cvaplicacion = 'SIC10000' AND cvusuario = 2;
+DELETE FROM maplicaciones WHERE cvaplicacion = 'SIC60000';
 
 SELECT * FROM maccesos ORDER BY cvaplicacion ASC;
 
-SELECT * FROM aplicaciones WHERE CvAplicacion LIKE '%0000';
-SELECT * FROM aplicaciones WHERE CvAplicacion LIKE 'SIC4%' LIMIT 18446744073709551615 OFFSET 1;
-SELECT * FROM aplicaciones WHERE CvAplicacion LIKE 'SIC1%' ;
+SELECT * FROM maplicaciones WHERE CvAplicacion LIKE '%0000';
+SELECT * FROM maplicaciones WHERE CvAplicacion LIKE 'SIC60%';
+SELECT * FROM maplicaciones WHERE CvAplicacion LIKE 'SIC1%';
 
 DELETE FROM aplicaciones where id_aplicacion = 11;
 
