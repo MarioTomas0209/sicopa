@@ -182,59 +182,6 @@ function addNewPerson() {
 
         }
 
-    } else if ($('#nuevo').text().trim() == 'Guardar') {
-
-        swal({
-            type: "warning",
-            title: '¿Seguro que desea guardar los cambios?',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar',
-        }).then((result) => {
-
-            if (result.value) {
-
-                let data = getData();
-
-                if (!data) {
-                    swal({
-                        type: "error",
-                        title: '¡Error!',
-                        text: 'Todos los campos son obligatorios',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Aceptar'
-                    }).then((result) => {
-                        return false;
-                    });
-                }
-
-                if (data) {
-                    data.action = 'edit';
-                    data.CvPerson = $('.seleccionada').attr('id');
-
-                    $.ajax({
-
-                        type: 'POST',
-                        url: 'controllers/datperson.controller.php',
-                        data: data
-
-                    }).done(function (result) {
-                        getDataTable();
-                        cancelar();
-                    }).fail(function () {
-                        alert('ERROR');
-                    });
-                }
-
-            } else {
-                cancelar();
-            }
-
-        }
-        );
-
     }
 
 }
@@ -424,11 +371,72 @@ function deletePerson() {
 
 /** --------------- Logic Edit a person in table mPersona ----------------  */
 function editPerson() {
-    $('#nuevo').html('<i class="bi bi-check-circle"></i> Guardar').css('background-color', 'green');
-    enableComponents(true);
-    $('#curp').prop('disabled', true);
-    $('#modificar').prop('disabled', true);
-    $('#eliminar').prop('disabled', true);
+    if ($('#modificar').text().trim() == 'Modificar') {
+
+        $('#modificar').html('<i class="bi bi-check-circle"></i> Guardar');
+        enableComponents(true);
+        $('#curp').prop('disabled', true);
+        $('#nuevo').prop('disabled', true);
+        $('#eliminar').prop('disabled', true);
+
+
+    } else if ($('#modificar').text().trim() == 'Guardar') {
+
+        swal({
+            type: "warning",
+            title: '¿Seguro que desea guardar los cambios?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar',
+        }).then((result) => {
+
+            if (result.value) {
+
+                let data = getData();
+
+                if (!data) {
+                    swal({
+                        type: "error",
+                        title: '¡Error!',
+                        text: 'Todos los campos son obligatorios',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        return false;
+                    });
+                }
+
+                if (data) {
+                    data.action = 'edit';
+                    data.CvPerson = $('.seleccionada').attr('id');
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: 'controllers/datperson.controller.php',
+                        data: data
+
+                    }).done(function (result) {
+                        getDataTable();
+                        cancelar();
+                        $('#modificar').html('<i class="bi bi-pencil-square"></i> Modificar');
+                    }).fail(function () {
+                        alert('ERROR');
+                    });
+                }
+
+            } else {
+                cancelar();
+            }
+
+        }
+        );
+
+    }
+
+
 }
 /** ------------- End Logic Edit a person in table mPersona --------------  */
 

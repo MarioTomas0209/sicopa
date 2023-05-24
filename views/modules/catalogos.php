@@ -1,3 +1,5 @@
+<?php $access = new CatalogsController() ?>
+
 <section class="container">
     <div class="mt-3 buscador">
         <h2>Mantenimiento de Catálogos</h2>
@@ -76,9 +78,9 @@
 
 
         <div class="card-header d-flex justify-content-center gap-4">
-            <button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data" disabled><i class="bi bi-plus-lg"></i> Nuevo</button>
-            <button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
-            <button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="bi bi-pencil-square"></i> Modificar</button>
+            <?php if ($access->create) { ?><button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data" disabled><i class="bi bi-plus-lg"></i> Nuevo</button><?php } ?>
+            <?php if ($access->delete) { ?><button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button><?php } ?>
+            <?php if ($access->edit) { ?><button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="bi bi-pencil-square"></i> Modificar</button><?php } ?>
             <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
         </div>
 

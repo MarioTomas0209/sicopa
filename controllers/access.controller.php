@@ -2,8 +2,11 @@
 
 if (isset($_POST['action'])) {
 
+    session_start();
+
     require_once "../models/access.model.php";
     require_once "../models/applications.model.php";
+    
     $CatalogsController = new AccessController;
 
     switch ($_POST['action']) {
@@ -17,6 +20,43 @@ if (isset($_POST['action'])) {
 }
 
 class AccessController {
+
+    public $create = false;
+    public $edit = false;
+    public $delete = false;
+
+
+    public function __construct() {
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->create = true;
+            $this->edit = true;
+            $this->delete = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC61000" => "create", "SIC62000" => "edit", "SIC63000" => "delete"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
+
+    public static function getAccess($CvUser) {
+        $result = ApplicationsModel::getAccessByUser($CvUser);
+        $access = [];
+
+        foreach ($result as $key => $value) {
+            $access[] = $value[2];
+        }
+
+        return $access;
+    }
 
     public static function addApplication() {
         $cv_application = $_POST['cv_application'];

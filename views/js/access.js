@@ -67,7 +67,6 @@ function seleccionar(id) {
     $('.usuarioSeleccionado').removeClass('seleccionada');
     $('#' + id).addClass('seleccionada');
 
-    CANCEL_BUTTON.prop('disabled', false);
     diableButtons();
 }
 
@@ -210,7 +209,7 @@ function saveAccess() {
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Aceptar',
-            timer: 500
+            timer: 1000
         });
 
     }).fail(function () {
@@ -333,7 +332,6 @@ function search() {
 function diableButtons() {
     SEARCH_BUTTON.prop('disabled', true);
     SAVE_BUTTON.prop('disabled', true);
-    CANCEL_BUTTON.prop('disabled', true);
     $('.list-access-selected').html('');
     $('#access-selected button').prop('disabled', true);
     $('.list-access li').removeClass('seleccionada');
@@ -343,7 +341,6 @@ function diableButtons() {
 function enableButtons() {
     SEARCH_BUTTON.prop('disabled', false);
     SAVE_BUTTON.prop('disabled', true);
-    CANCEL_BUTTON.prop('disabled', true);
     $('.list-access-selected').html('');
     $('#access-selected button').prop('disabled', true);
     $('.list-access li').removeClass('seleccionada');

@@ -126,4 +126,15 @@ class ApplicationsModel {
         return $stmt -> fetchAll();
         $stmt = null;              
     }
+
+    public static function getAccessByUser($CvUser) {
+        $sql = "SELECT * FROM maccesos WHERE CvUsuario = :CvUsuario";
+        
+        $stmt = Conexion::conectar() -> prepare($sql);
+        $stmt -> bindParam(":CvUsuario", $CvUser, PDO::PARAM_STR);
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+        $stmt = null; 
+    }
 }

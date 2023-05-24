@@ -3,6 +3,8 @@
 if (isset($_POST['action'])) {
 
     require_once "../models/applications.model.php";
+    require_once "../controllers/access.controller.php";
+    
     $app = new ApplicationsController;
 
     switch ($_POST['action']) {
@@ -18,6 +20,32 @@ if (isset($_POST['action'])) {
 }
 
 class ApplicationsController {
+
+    public $create = false;
+    public $edit = false;
+    public $delete = false;
+
+
+    public function __construct() {
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->create = true;
+            $this->edit = true;
+            $this->delete = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC51000" => "create", "SIC52000" => "edit", "SIC53000" => "delete"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
 
     public static function addApplication() {
         $cv_application = $_POST['cv_application'];

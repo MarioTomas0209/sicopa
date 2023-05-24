@@ -1,3 +1,5 @@
+<?php $access = new AccessController() ?>
+
 <section class="container">
     <div class="mt-3 buscador d-flex justify-content-center">
         <h2 class="text-center">Mantenimiento de Accesos</h2>
@@ -63,7 +65,7 @@
 
         <div class="card-header d-flex justify-content-center gap-4">
             <button type="button" class="btn btn-primary" id="buscar" disabled><i class="bi bi-search"></i> Buscar</button>
-            <button type="button" class="btn btn-success" id="guardar" disabled><i class="bi bi-check-circle"></i> Guardar</button>
+            <?php if ($access->create || $access->delete) { ?><button type="button" class="btn btn-success" id="guardar" disabled><i class="bi bi-check-circle"></i> Guardar</button><?php } ?>
             <!-- <button type="button" class="btn btn-danger" id="eliminar" disabled><i class="bi bi-trash"></i> Eliminar</button> -->
             <!-- <button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data" disabled><i class="bi bi-pencil-square"></i> Modificar</button> -->
             <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
@@ -120,10 +122,10 @@
                 </div>
 
                 <div class="access col-sm-2 row g-1" id="access-selected">
-                    <button class="arrows arrows-add" id="left2" type="button" disabled><i class="bi bi-caret-right-fill"></i></button>
-                    <button class="arrows arrows-add" id="dbleft2" type="button" disabled><i class="bi bi-caret-right-fill"></i><i class="bi bi-caret-right-fill"></i></button>
-                    <button class="arrows arrows-remove" id="right2" type="button" disabled><i class="bi bi-caret-left-fill"></i></button>
-                    <button class="arrows arrows-remove" id="dbright2" type="button" disabled><i class="bi bi-caret-left-fill"></i><i class="bi bi-caret-left-fill"></i></button>
+                    <?php if ($access->create) { ?><button class="arrows arrows-add" id="left2" type="button" disabled><i class="bi bi-caret-right-fill"></i></button><?php } ?>
+                    <?php if ($access->create) { ?><button class="arrows arrows-add" id="dbleft2" type="button" disabled><i class="bi bi-caret-right-fill"></i><i class="bi bi-caret-right-fill"></i></button><?php } ?>
+                    <?php if ($access->delete) { ?><button class="arrows arrows-remove" id="right2" type="button" disabled><i class="bi bi-caret-left-fill"></i></button><?php } ?>
+                    <?php if ($access->delete) { ?><button class="arrows arrows-remove" id="dbright2" type="button" disabled><i class="bi bi-caret-left-fill"></i><i class="bi bi-caret-left-fill"></i></button><?php } ?>
                 </div>
 
                 <div class="with-access col-sm-4 border">

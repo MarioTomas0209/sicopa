@@ -37,6 +37,26 @@ UPDATE aplicaciones SET cvaplicacion = '123', dsaplicacion = '321' WHERE id_apli
 SELECT * FROM doctor WHERE email NOT IN ('admin');
 SELECT * FROM Users WHERE login NOT IN ('admin') ORDER BY CvUser ASC;
 
-SELECT u.cvuser, u.login, p.cvperson, n.dsnombre, a.dsapellido, u.fecini, u.fecfin, u.edocta
+SELECT u.cvuser, u.login, u.password, p.cvperson, n.dsnombre, a.dsapellido, u.fecini, u.fecfin, u.edocta
 FROM users u, mpersona p, cnombre n, capellido a
 WHERE p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat;
+
+
+
+SELECT u.cvuser, u.login, u.password, p.cvperson, n.dsnombre, a.dsapellido, u.fecini, u.fecfin, u.edocta
+                FROM users u, mpersona p, cnombre n, capellido a
+                WHERE login = 'Triny'
+                AND p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat
+
+
+
+
+
+
+
+
+
+
+
+
+

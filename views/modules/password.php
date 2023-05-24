@@ -1,3 +1,5 @@
+<?php $access = new ControllerPassword() ?>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="views/js/password.js"></script>
 
@@ -78,9 +80,12 @@
                             <br><br>
 
                             <div class="form-group">
+                                
+                            <?php if ($access->edit) { ?>
                                 <button type="submit" id="Cambiar" class="btn btn-primary mr-5" style="margin-right: 25px; width: 150px;">
                                     <i class="bi bi-check-circle"></i> Cambiar
                                 </button>
+                            <?php } ?>
 
                                 <button type="button" id="cancelar" class="btn btn-danger" onclick="window.location = 'password'" style="width: 150px;">
                                     <i class="bi bi-x-lg"></i> Cancelar

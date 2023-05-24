@@ -3,6 +3,8 @@
 if (isset($_POST['action'])) {
 
     require_once "../models/datperson.model.php";
+    require_once "../controllers/access.controller.php";
+
     $ControllerPersonalData = new ControllerPersonalData;
 
     switch ($_POST['action']) {
@@ -19,6 +21,32 @@ if (isset($_POST['action'])) {
 }
 
 class ControllerPersonalData {
+
+    public $create = false;
+    public $edit = false;
+    public $delete = false;
+
+
+    public function __construct() {
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->create = true;
+            $this->edit = true;
+            $this->delete = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC21000" => "create", "SIC22000" => "edit", "SIC23000" => "delete"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
 
     public static function getTipPerson() {
         return ModelPersonalData::getTipPerson();

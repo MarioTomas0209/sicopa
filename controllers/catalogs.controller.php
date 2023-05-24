@@ -3,7 +3,9 @@
 if (isset($_POST['action'])) {
 
     require_once "../models/catalogs.model.php";
-    $CatalogsController = new CatalogsController;
+    require_once "../controllers/access.controller.php";
+
+    $CatalogsController = new CatalogsController();
 
     switch ($_POST['action']) {
         case 'SelectCatalog': $CatalogsController -> getDataCatalog();break;
@@ -17,6 +19,32 @@ if (isset($_POST['action'])) {
 }
 
 class CatalogsController {
+
+    public $create = false;
+    public $edit = false;
+    public $delete = false;
+
+
+    public function __construct() {
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->create = true;
+            $this->edit = true;
+            $this->delete = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC11000" => "create", "SIC12000" => "edit", "SIC13000" => "delete"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
 
     public static function getCatalogs() {
         return CatalogsModel::getCatalogs();

@@ -1,3 +1,5 @@
+<?php $access = new ControllerPersonalData() ?>
+
 <div class="container">
 
     <div class="mt-3 d-flex justify-content-center gap-5">
@@ -25,9 +27,9 @@
 
         <div class="card">
             <div class="card-header d-flex justify-content-center gap-4">
-                <button type="button" class="btn btn-success" id="nuevo"><i class="bi bi-plus-lg"></i> Nuevo</button>
-                <button type="button" class="btn btn-danger" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
-                <button type="button" class="btn btn-warning" id="modificar"><i class="bi bi-pencil-square"></i> Modificar</button>
+                <button type="button" class="btn btn-success <?php echo $access->create ? '' : 'd-none' ?>" id="nuevo"><i class="bi bi-plus-lg"></i> Nuevo</button>
+                <button type="button" class="btn btn-danger <?php echo $access->delete ? '' : 'd-none' ?>" id="eliminar"><i class="bi bi-trash"></i> Eliminar</button>
+                <button type="button" class="btn btn-warning <?php echo $access->edit ? '' : 'd-none' ?>" id="modificar"><i class="bi bi-pencil-square"></i> Modificar</button>
                 <button type="button" class="btn btn-secondary" id="cancelar"><i class="bi bi-x-lg"></i> Cancelar</button>
             </div>
         </div>

@@ -14,13 +14,8 @@ class LoginController {
 
         if ($user) {
 
-            if ($user['fecini']) {
-                
-            }
-
-
             session_start();
-            $_SESSION['id_'] = 1;
+            $_SESSION['id_user'] = 1;
             $_SESSION['nombre'] = $user['dsnombre'];
             $_SESSION['apellidos'] = $user['dsapellido'];
             $_SESSION['login'] = $user['login'];

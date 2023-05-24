@@ -2,6 +2,28 @@
 
 class ControllerPassword {
 
+    public $edit = false;
+
+
+    public function __construct() {
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->edit = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC42000" => "edit"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
+
     public static function changePassword() {
         if (isset($_POST['current_password'])) {
 

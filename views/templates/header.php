@@ -1,3 +1,15 @@
+<?php 
+if (isset($_SESSION['CvUser'])) {
+    $isAdmin = false;
+
+    if ($_SESSION['CvUser'] == 1) {
+        $isAdmin = true;
+    }
+
+    $access_user = AccessController::getAccess($_SESSION['CvUser']);
+}
+?>
+
 <header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,30 +46,42 @@
                             <a class="nav-link" href="#">Citas</a>
                         </li>
 
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="pacientes">Pacientes</a>
-                        </li> -->
-
                         <?php if (isset($_SESSION['is_login'])) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="">|</a>
                             </li>
 
+                            <?php if (in_array("SIC10000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="catalogos">Catalogos</a>
                             </li>
+                            <?php } ?>
+
+                            <?php if (in_array("SIC20000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="datos-personales">Datos Personales</a>
                             </li>
+                            <?php } ?>
+
+                            <?php if (in_array("SIC30000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="usuarios">Usuarios</a>
                             </li>
+                            <?php } ?>
+
+                            <?php if (in_array("SIC40000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="password">Contraseña</a>
                             </li>
+                            <?php } ?>
+
+                            <?php if (in_array("SIC50000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="aplicaciones">Aplicaciones</a>
                             </li>
+                            <?php } ?>
+
+                            <?php if (in_array("SIC60000", $access_user) || $isAdmin) { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="accesos">Accesos</a>
                             </li>
@@ -65,6 +89,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="">|</a>
                             </li>
+                            <?php } ?>
+
                         <?php } ?>
                         
                     </ul>

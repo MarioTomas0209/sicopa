@@ -1,3 +1,5 @@
+<?php $access = new ApplicationsController() ?>
+
 <section class="container">
     <div class="mt-3 buscador d-flex justify-content-center">
         <h2 class="text-center">Mantenimiento de Aplicaciones</h2>
@@ -81,9 +83,9 @@
 
 
         <div class="card-header d-flex justify-content-center gap-4">
-            <button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data"><i class="bi bi-plus-lg"></i> Nuevo</button>
-            <button type="button" class="btn btn-danger" id="eliminar" disabled><i class="bi bi-trash"></i> Eliminar</button>
-            <button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data" disabled><i class="bi bi-pencil-square"></i> Modificar</button>
+            <?php if ($access->create) { ?><button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#add_data"><i class="bi bi-plus-lg"></i> Nuevo</button><?php } ?>
+            <?php if ($access->delete) { ?><button type="button" class="btn btn-danger" id="eliminar" disabled><i class="bi bi-trash"></i> Eliminar</button><?php } ?>
+            <?php if ($access->edit) { ?><button type="button" class="btn btn-warning" id="modificar" data-bs-toggle="modal" data-bs-target="#edit_data" disabled><i class="bi bi-pencil-square"></i> Modificar</button><?php } ?>
             <button type="button" class="btn btn-secondary" id="cancelar" disabled><i class="bi bi-x-lg"></i> Cancelar</button>
         </div>
 

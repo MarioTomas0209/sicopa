@@ -1,8 +1,10 @@
 <?php
 
 if (isset($_POST['action'])) {
-
+    
     require_once "../models/usuarios.model.php";
+    require_once "../controllers/access.controller.php";
+
     $ControllerUsuarios = new ControllerUsuarios;
 
     switch ($_POST['action']) {
@@ -17,6 +19,36 @@ if (isset($_POST['action'])) {
 }
 
 class ControllerUsuarios {
+
+    public $create = false;
+    public $edit = false;
+    public $delete = false;
+
+
+    public function __construct() {
+
+        if (!(isset($_SESSION['CvUser']))) {
+            return false;
+        }
+
+        if ($_SESSION['CvUser'] == 1) {
+            $this->create = true;
+            $this->edit = true;
+            $this->delete = true;
+
+            return false;
+        }
+
+        $access_user = AccessController::getAccess($_SESSION['CvUser']);
+        $permissions = ["SIC31000" => "create", "SIC32000" => "edit", "SIC33000" => "delete"];
+
+        foreach ($permissions as $cv => $permission) {
+            if (in_array($cv, $access_user)) {
+                $this->$permission = true;
+            }
+        }
+
+    }
 
     public static function Login() {
         if (isset($_POST['email'])) {

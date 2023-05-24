@@ -23,7 +23,7 @@ class ModelUsuarios {
         $sql = "SELECT u.cvuser, u.login, u.password, p.cvperson, n.dsnombre, a.dsapellido, u.fecini, u.fecfin, u.edocta
                 FROM users u, mpersona p, cnombre n, capellido a
                 WHERE login = :login 
-                AND p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat;";
+                AND p.cvperson = u.cvperson AND n.cvnombre = p.cvnombre AND a.cvapellido = p.cvapepat";
 
         $stmt = Conexion::conectar()->prepare($sql);
         $stmt -> bindParam(':login', $Login, PDO::PARAM_STR);
