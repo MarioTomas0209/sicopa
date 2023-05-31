@@ -87,6 +87,10 @@ if (isset($_SESSION['CvUser'])) {
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="pedidos">Pedidos</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="">|</a>
                             </li>
                             <?php } ?>

@@ -40,6 +40,7 @@
             $ruta == "password" ||
             $ruta == "aplicaciones" ||
             $ruta == "accesos" ||
+            $ruta == "pedidos" ||
             $ruta == "salir"
 
         ) {
